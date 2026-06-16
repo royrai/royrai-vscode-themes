@@ -1,8 +1,8 @@
 {
   "name": "royrai-vscode-themes",
   "displayName": "RoyrAI Color Themes",
-  "description": "A collection of 33 hand-crafted dark color themes, organized into families: blues & teals, greens, purples & pinks, warm tones, metals, labradorite crystals, and parrots.",
-  "version": "1.0.0",
+  "description": "A collection of 33 hand-crafted dark color themes, organized into families: cool blues & teals, crystals, greens, metals, parrots, purples & pinks, and warm tones.",
+  "version": "1.0.01",
   "publisher": "royrai",
   "engines": {
     "vscode": "^1.70.0"
@@ -24,9 +24,9 @@
   "contributes": {
     "themes": [
       {
-        "label": "RoyrAI Cool Ocean Deep",
+        "label": "RoyrAI Cool Arctic Frost",
         "uiTheme": "vs-dark",
-        "path": "./themes/royrai-cool-ocean-deep-color-theme.json"
+        "path": "./themes/royrai-cool-arctic-frost-color-theme.json"
       },
       {
         "label": "RoyrAI Cool Deep Blue",
@@ -34,19 +34,14 @@
         "path": "./themes/royrai-cool-deep-blue-color-theme.json"
       },
       {
-        "label": "RoyrAI Cool Arctic Frost",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-cool-arctic-frost-color-theme.json"
-      },
-      {
         "label": "RoyrAI Cool Mono Teal",
         "uiTheme": "vs-dark",
         "path": "./themes/royrai-cool-mono-teal-color-theme.json"
       },
       {
-        "label": "RoyrAI Cool Turquoise Lagoon",
+        "label": "RoyrAI Cool Ocean Deep",
         "uiTheme": "vs-dark",
-        "path": "./themes/royrai-cool-turquoise-lagoon-color-theme.json"
+        "path": "./themes/royrai-cool-ocean-deep-color-theme.json"
       },
       {
         "label": "RoyrAI Cool Slate & Coral",
@@ -54,104 +49,9 @@
         "path": "./themes/royrai-cool-slate-and-coral-color-theme.json"
       },
       {
-        "label": "RoyrAI Greens Forest Canopy",
+        "label": "RoyrAI Cool Turquoise Lagoon",
         "uiTheme": "vs-dark",
-        "path": "./themes/royrai-greens-forest-canopy-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Greens Mono Green",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-greens-mono-green-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Greens Green Lime",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-greens-green-lime-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Greens Sage Garden",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-greens-sage-garden-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Greens Citrus Bliss",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-greens-citrus-bliss-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Purples Star Dust",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-purples-star-dust-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Purples Purple Berry",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-purples-purple-berry-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Purples Royal Purple",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-purples-royal-purple-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Purples Indigo Night",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-purples-indigo-night-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Purples Cyberpunk Neon",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-purples-cyberpunk-neon-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Warm Red Wine",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-warm-red-wine-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Warm Hot Lava",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-warm-hot-lava-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Warm Sunset Ember",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-warm-sunset-ember-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Warm Peach Sorbet",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-warm-peach-sorbet-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Warm Earth Amber",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-warm-earth-amber-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Warm Mocha Cream",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-warm-mocha-cream-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Metals Silver Spoon",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-metals-silver-spoon-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Metals Golden Land",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-metals-golden-land-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Metals Bronze Bar",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-metals-bronze-bar-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Metals Metalic Wealth",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-metals-metalic-wealth-color-theme.json"
+        "path": "./themes/royrai-cool-turquoise-lagoon-color-theme.json"
       },
       {
         "label": "RoyrAI Crystals Labradorite Blue",
@@ -174,9 +74,44 @@
         "path": "./themes/royrai-crystals-rose-quartz-color-theme.json"
       },
       {
-        "label": "RoyrAI Parrots Teal & Gold",
+        "label": "RoyrAI Greens Citrus Bliss",
         "uiTheme": "vs-dark",
-        "path": "./themes/royrai-parrots-teal-and-gold-color-theme.json"
+        "path": "./themes/royrai-greens-citrus-bliss-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Greens Forest Canopy",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-greens-forest-canopy-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Greens Green Lime",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-greens-green-lime-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Greens Sage Garden",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-greens-sage-garden-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Metals Bronze Bar",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-metals-bronze-bar-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Metals Golden Land",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-metals-golden-land-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Metals Metalic Wealth",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-metals-metalic-wealth-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Metals Silver Spoon",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-metals-silver-spoon-color-theme.json"
       },
       {
         "label": "RoyrAI Parrots Golden-Blue Macaw",
@@ -187,6 +122,71 @@
         "label": "RoyrAI Parrots Scarlet Macaw",
         "uiTheme": "vs-dark",
         "path": "./themes/royrai-parrots-scarlet-macaw-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Parrots Teal & Gold",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-parrots-teal-and-gold-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Purples Cyberpunk Neon",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-purples-cyberpunk-neon-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Purples Indigo Night",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-purples-indigo-night-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Purples Purple Berry",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-purples-purple-berry-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Purples Royal Purple",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-purples-royal-purple-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Purples Star Dust",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-purples-star-dust-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Warm Earth Amber",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-warm-earth-amber-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Warm Hot Lava",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-warm-hot-lava-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Warm Mocha Cream",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-warm-mocha-cream-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Warm Peach Sorbet",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-warm-peach-sorbet-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Warm Red Basalt",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-warm-red-basalt-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Warm Red Wine",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-warm-red-wine-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Warm Sunset Ember",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-warm-sunset-ember-color-theme.json"
       }
     ]
   }

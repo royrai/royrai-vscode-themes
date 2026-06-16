@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VSCode Dark Theme Palettes — Grouped</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: #0d0d12;
+        color: #e6e6ee;
+        padding: 32px;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 26px;
+        margin-bottom: 6px;
+      }
+      .sub {
+        color: #9a9ab0;
+        margin-bottom: 28px;
+        font-size: 14px;
+        max-width: 760px;
+      }
+      .group-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 34px 0 4px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #2a2a38;
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .group-title .count {
+        font-size: 12px;
+        font-weight: 400;
+        color: #8a8aa0;
+      }
+      .group-desc {
+        color: #8a8aa0;
+        font-size: 13px;
+        margin-bottom: 16px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 22px;
+      }
+      .card {
+        background: #16161f;
+        border: 1px solid #262633;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .card h2 {
+        font-size: 16px;
+        padding: 14px 16px 10px;
+      }
+      .swatches {
+        display: flex;
+      }
+      .swatch {
+        flex: 1;
+        height: 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        padding-bottom: 6px;
+        gap: 2px;
+        font-size: 11px;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-weight: 600;
+        cursor: pointer;
+        transition: flex 0.15s ease;
+      }
+      .swatch:hover {
+        flex: 1.4;
+      }
+      .swatch .role {
+        font-size: 9px;
+        font-weight: 400;
+        opacity: 0.75;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .preview {
+        margin: 14px 16px 16px;
+        border-radius: 8px;
+        padding: 16px 18px;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 12.5px;
+        line-height: 1.75;
+      }
+      .ln {
+        white-space: pre;
+      }
+      .hexrow {
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 11px;
+        color: #8a8aa0;
+        padding: 0 16px 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>VSCode Dark Theme Palettes — Grouped</h1>
+    <p style="color: #8a8aa0; font-size: 13px; margin-bottom: 16px">
+      Updated: 2026-06-16
+    </p>
+    <p class="sub">
+      33 palettes organized into 7 groups (groups listed alphabetically; themes
+      sorted by name within each group). Each card has a derived (or fixed)
+      editor <strong>background</strong> and default
+      <strong>text</strong> color; the code preview renders on the background.
+      Click any swatch to copy its hex.
+    </p>
+    <div id="root"></div>
+
+    <script>
+      // entry: [name, [keyword, string, func]]  — optional 3rd element forces a background hex
+      const groups = [
+        [
+          "Cool (Blues & Teals)",
+          "Cool water tones",
+          [
+            ["RoyrAI Cool Arctic Frost", ["#4cc9f0", "#4361ee", "#b8c0ff"]],
+            [
+              "RoyrAI Cool Deep Blue",
+              ["#3b82f6", "#60a5fa", "#93c5fd"],
+              "#0e1a45",
+            ],
+            ["RoyrAI Cool Mono Teal", ["#014f4f", "#029191", "#5ee0e0"]],
+            ["RoyrAI Cool Ocean Deep", ["#023e8a", "#0077b6", "#48cae4"]],
+            ["RoyrAI Cool Slate & Coral", ["#3d5a80", "#98c1d9", "#f5a98b"]],
+            ["RoyrAI Cool Turquoise Lagoon", ["#38bdf8", "#2dd4bf", "#7ae9f5"]],
+          ],
+        ],
+        [
+          "Crystals",
+          "Labradorite & quartz minerals",
+          [
+            [
+              "RoyrAI Crystals Labradorite Blue",
+              ["#5a5248", "#2e6db5", "#5fb0e8"],
+            ],
+            [
+              "RoyrAI Crystals Labradorite Green",
+              ["#57544a", "#2f8f5b", "#5fd49a"],
+            ],
+            [
+              "RoyrAI Crystals Labradorite Purple",
+              ["#565049", "#6a3fae", "#a17be0"],
+            ],
+            ["RoyrAI Crystals Rose Quartz", ["#f7c9d4", "#e7a6b3", "#d28a9c"]],
+          ],
+        ],
+        [
+          "Greens",
+          "Foliage, lime & citrus",
+          [
+            [
+              "RoyrAI Greens Citrus Bliss",
+              ["#ff7a00", "#a8e10c", "#ffe23d"],
+              "#16280d",
+            ],
+            ["RoyrAI Greens Forest Canopy", ["#2d6a4f", "#52b788", "#95d5b2"]],
+            [
+              "RoyrAI Greens Green Lime",
+              ["#4a8656", "#8ccb67", "#ddff73"],
+              "#18280e",
+            ],
+            ["RoyrAI Greens Sage Garden", ["#606c38", "#a3b18a", "#dad7cd"]],
+          ],
+        ],
+        [
+          "Metals",
+          "Precious & worked metal",
+          [
+            [
+              "RoyrAI Metals Bronze Bar",
+              ["#7a3e1e", "#a85a30", "#d2854f"],
+              "#2a100e",
+            ],
+            ["RoyrAI Metals Golden Land", ["#9c7a16", "#d4a72c", "#f5d76e"]],
+            [
+              "RoyrAI Metals Metalic Wealth",
+              ["#d4a72c", "#dfe4e8", "#f5d76e"],
+              "#32200c",
+            ],
+            [
+              "RoyrAI Metals Silver Spoon",
+              ["#9aa7b5", "#647082", "#e8edf2"],
+              "#0d1116",
+            ],
+          ],
+        ],
+        [
+          "Parrots (Parrots & RoyrAI Brand)",
+          "Plumage & RoyrAI",
+          [
+            [
+              "RoyrAI Parrots Golden-Blue Macaw",
+              ["#1565c0", "#f9c80e", "#4c9a2a"],
+              "#0a163a",
+            ],
+            [
+              "RoyrAI Parrots Scarlet Macaw",
+              ["#e63016", "#f6c213", "#1b6fc4"],
+              "#2e1216",
+            ],
+            ["RoyrAI Parrots Teal & Gold", ["#0fa4a0", "#f7ce46", "#76e4e0"]],
+          ],
+        ],
+        [
+          "Purples (Purples & Pinks)",
+          "Violet & berry",
+          [
+            [
+              "RoyrAI Purples Cyberpunk Neon",
+              ["#e040fb", "#05d9e8", "#d1f7ff"],
+            ],
+            ["RoyrAI Purples Indigo Night", ["#6366f1", "#818cf8", "#a5b4fc"]],
+            ["RoyrAI Purples Purple Berry", ["#7b2cbf", "#c77dff", "#e0aaff"]],
+            ["RoyrAI Purples Royal Purple", ["#7c3aed", "#a855f7", "#c084fc"]],
+            ["RoyrAI Purples Star Dust", ["#cba6f7", "#89b4fa", "#f5c2e7"]],
+          ],
+        ],
+        [
+          "Warm (Reds, Oranges & Ambers)",
+          "Fire, fruit & earth",
+          [
+            ["RoyrAI Warm Earth Amber", ["#7a4f01", "#d99700", "#ffcf56"]],
+            [
+              "RoyrAI Warm Hot Lava",
+              ["#9d0208", "#dc2f02", "#ffba08"],
+              "#381408",
+            ],
+            [
+              "RoyrAI Warm Mocha Cream",
+              ["#6f4518", "#a47148", "#d4a373"],
+              "#261d15",
+            ],
+            [
+              "RoyrAI Warm Peach Sorbet",
+              ["#eb8060", "#f6a96d", "#edc574"],
+              "#3a241b",
+            ],
+            ["RoyrAI Warm Red Basalt", ["#b10206", "#e32602", "#ff9506"]],
+            ["RoyrAI Warm Red Wine", ["#6b1121", "#ad213c", "#ec516f"]],
+            ["RoyrAI Warm Sunset Ember", ["#ff6b35", "#f7931e", "#ffd166"]],
+          ],
+        ],
+      ];
+
+      const hex2rgb = (h) => [
+        parseInt(h.slice(1, 3), 16),
+        parseInt(h.slice(3, 5), 16),
+        parseInt(h.slice(5, 7), 16),
+      ];
+      const rgb2hex = ([r, g, b]) =>
+        "#" +
+        [r, g, b]
+          .map((v) =>
+            Math.round(Math.max(0, Math.min(255, v)))
+              .toString(16)
+              .padStart(2, "0"),
+          )
+          .join("");
+      const lum = (h) => {
+        const [r, g, b] = hex2rgb(h);
+        return 0.299 * r + 0.587 * g + 0.114 * b;
+      };
+      const mix = (a, b, t) => {
+        const A = hex2rgb(a),
+          B = hex2rgb(b);
+        return rgb2hex([0, 1, 2].map((i) => A[i] + (B[i] - A[i]) * t));
+      };
+      const textOn = (h) => (lum(h) > 140 ? "#111" : "#fff");
+
+      const deriveBg = (cols) => {
+        const darkest = cols.slice().sort((a, b) => lum(a) - lum(b))[0];
+        return mix(darkest, "#0a0a0d", 0.86);
+      };
+      const deriveFg = (cols) => {
+        const lightest = cols.slice().sort((a, b) => lum(b) - lum(a))[0];
+        return mix(lightest, "#f4f4fa", 0.7);
+      };
+
+      const cardHTML = ([name, cols, bgOverride]) => {
+        const [c1, c2, c3] = cols;
+        const bg = bgOverride || deriveBg(cols);
+        const fg = deriveFg(cols);
+        const cmt = mix(fg, bg, 0.55);
+        const swatch = (c, role) =>
+          `<div class="swatch" style="background:${c};color:${textOn(c)}" data-hex="${c}">
+       <span class="role">${role}</span>${c}
+     </div>`;
+        return `
+    <div class="card">
+      <h2>${name}</h2>
+      <div class="swatches">
+        ${swatch(bg, "bg")}
+        ${swatch(c1, "keyword")}
+        ${swatch(c2, "string")}
+        ${swatch(c3, "func")}
+      </div>
+      <div class="preview" style="background:${bg};color:${fg}">
+        <div class="ln"><span style="color:${cmt}">// theme preview</span></div>
+        <div class="ln"><span style="color:${c1}">function</span> <span style="color:${c3}">greet</span>(<span style="color:${fg}">name</span>) {</div>
+        <div class="ln">  <span style="color:${c1}">return</span> <span style="color:${c2}">\`Hello, \${name}!\`</span>;</div>
+        <div class="ln">}</div>
+        <div class="ln"><span style="color:${c1}">const</span> <span style="color:${c3}">msg</span> = <span style="color:${c3}">greet</span>(<span style="color:${c2}">"world"</span>);</div>
+      </div>
+      <div class="hexrow">bg ${bg}  ·  ${cols.join("  ·  ")}  ·  text ${fg}</div>
+    </div>`;
+      };
+
+      const root = document.getElementById("root");
+      groups.forEach(([title, desc, themes]) => {
+        const section = document.createElement("div");
+        section.innerHTML = `
+    <div class="group-title">${title} <span class="count">${themes.length} themes</span></div>
+    <div class="group-desc">${desc}</div>
+    <div class="grid">${themes.map(cardHTML).join("")}</div>
+  `;
+        root.appendChild(section);
+      });
+
+      document.addEventListener("click", (e) => {
+        const sw = e.target.closest(".swatch");
+        if (!sw) return;
+        navigator.clipboard?.writeText(sw.dataset.hex);
+        const span = sw.childNodes[sw.childNodes.length - 1];
+        const orig = span.textContent;
+        span.textContent = "copied!";
+        setTimeout(() => (span.textContent = orig), 800);
+      });
+    </script>
+  </body>
+</html>

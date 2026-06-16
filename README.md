@@ -5,25 +5,25 @@ A collection of **33 hand-crafted dark color themes** for Visual Studio Code, or
 ## Themes
 
 **Cool** (Blues & Teals):
-RoyrAI Cool Ocean Deep · RoyrAI Cool Deep Blue · RoyrAI Cool Arctic Frost · RoyrAI Cool Mono Teal · RoyrAI Cool Turquoise Lagoon · RoyrAI Cool Slate & Coral
-
-**Greens**:
-RoyrAI Greens Forest Canopy · RoyrAI Greens Mono Green · RoyrAI Greens Green Lime · RoyrAI Greens Sage Garden · RoyrAI Greens Citrus Bliss
-
-**Purples** (Purples & Pinks):
-RoyrAI Purples Star Dust · RoyrAI Purples Purple Berry · RoyrAI Purples Royal Purple · RoyrAI Purples Indigo Night · RoyrAI Purples Cyberpunk Neon
-
-**Warm** (Reds, Oranges & Ambers):
-RoyrAI Warm Red Wine · RoyrAI Warm Hot Lava · RoyrAI Warm Sunset Ember · RoyrAI Warm Peach Sorbet · RoyrAI Warm Earth Amber · RoyrAI Warm Mocha Cream
-
-**Metals**:
-RoyrAI Metals Silver Spoon · RoyrAI Metals Golden Land · RoyrAI Metals Bronze Bar · RoyrAI Metals Metalic Wealth
+RoyrAI Cool Arctic Frost · RoyrAI Cool Deep Blue · RoyrAI Cool Mono Teal · RoyrAI Cool Ocean Deep · RoyrAI Cool Slate & Coral · RoyrAI Cool Turquoise Lagoon
 
 **Crystals**:
 RoyrAI Crystals Labradorite Blue · RoyrAI Crystals Labradorite Green · RoyrAI Crystals Labradorite Purple · RoyrAI Crystals Rose Quartz
 
+**Greens**:
+RoyrAI Greens Citrus Bliss · RoyrAI Greens Forest Canopy · RoyrAI Greens Green Lime · RoyrAI Greens Sage Garden
+
+**Metals**:
+RoyrAI Metals Bronze Bar · RoyrAI Metals Golden Land · RoyrAI Metals Metalic Wealth · RoyrAI Metals Silver Spoon
+
 **Parrots** (Parrots & RoyrAI Brand):
-RoyrAI Parrots Teal & Gold · RoyrAI Parrots Golden-Blue Macaw · RoyrAI Parrots Scarlet Macaw
+RoyrAI Parrots Golden-Blue Macaw · RoyrAI Parrots Scarlet Macaw · RoyrAI Parrots Teal & Gold
+
+**Purples** (Purples & Pinks):
+RoyrAI Purples Cyberpunk Neon · RoyrAI Purples Indigo Night · RoyrAI Purples Purple Berry · RoyrAI Purples Royal Purple · RoyrAI Purples Star Dust
+
+**Warm** (Reds, Oranges & Ambers):
+RoyrAI Warm Earth Amber · RoyrAI Warm Hot Lava · RoyrAI Warm Mocha Cream · RoyrAI Warm Peach Sorbet · RoyrAI Warm Red Basalt · RoyrAI Warm Red Wine · RoyrAI Warm Sunset Ember
 
 ## How to use
 

@@ -9,41 +9,13 @@ const path = require("path");
 // ── palette data (same as the grouped preview) ──
 // entry: [name, [keyword, string, func]]  — optional 3rd element forces a background hex
 const groups = [
-  ["Blues & Teals", [
-    ["RoyrAI Cool Ocean Deep",        ["#023e8a","#0077b6","#48cae4"]],
-    ["RoyrAI Cool Deep Blue",         ["#3b82f6","#60a5fa","#93c5fd"]],
-    ["RoyrAI Cool Arctic Frost",      ["#4cc9f0","#4361ee","#b8c0ff"]],
-    ["RoyrAI Cool Mono Teal",         ["#014f4f","#029191","#5ee0e0"]],
-    ["RoyrAI Cool Turquoise Lagoon",  ["#053a4d","#0a7d92","#19b6d9"]],
-    ["RoyrAI Cool Slate & Coral",     ["#3d5a80","#98c1d9","#f5a98b"]],
-  ]],
-  ["Greens", [
-    ["RoyrAI Greens Forest Canopy",   ["#2d6a4f","#52b788","#95d5b2"]],
-    ["RoyrAI Greens Mono Green",      ["#1b4332","#40916c","#74c69c"]],
-    ["RoyrAI Greens Green Lime",      ["#386641","#6a994e","#a7c957"]],
-    ["RoyrAI Greens Sage Garden",     ["#606c38","#a3b18a","#dad7cd"]],
-    ["RoyrAI Greens Citrus Bliss",    ["#ff7a00","#a8e10c","#ffe23d"], "#16280d"],
-  ]],
-  ["Purples & Pinks", [
-    ["RoyrAI Purples Star Dust",      ["#cba6f7","#89b4fa","#f5c2e7"]],
-    ["RoyrAI Purples Purple Berry",   ["#7b2cbf","#c77dff","#e0aaff"]],
-    ["RoyrAI Purples Royal Purple",   ["#7c3aed","#a855f7","#c084fc"]],
-    ["RoyrAI Purples Indigo Night",   ["#6366f1","#818cf8","#a5b4fc"]],
-    ["RoyrAI Purples Cyberpunk Neon", ["#e040fb","#05d9e8","#d1f7ff"]],
-  ]],
-  ["Warm — Reds, Oranges & Ambers", [
-    ["RoyrAI Warm Red Wine",          ["#5b0e1c","#931c33","#c8455e"]],
-    ["RoyrAI Warm Hot Lava",          ["#9d0208","#dc2f02","#ffba08"]],
-    ["RoyrAI Warm Sunset Ember",      ["#ff6b35","#f7931e","#ffd166"]],
-    ["RoyrAI Warm Peach Sorbet",      ["#e76f51","#f4a261","#e9c46a"]],
-    ["RoyrAI Warm Earth Amber",       ["#7a4f01","#d99700","#ffcf56"]],
-    ["RoyrAI Warm Mocha Cream",       ["#6f4518","#a47148","#d4a373"]],
-  ]],
-  ["Metals", [
-    ["RoyrAI Metals Silver Spoon",    ["#8c9196","#b5bcc2","#dfe4e8"]],
-    ["RoyrAI Metals Golden Land",     ["#9c7a16","#d4a72c","#f5d76e"]],
-    ["RoyrAI Metals Bronze Bar",      ["#7a3e1e","#a85a30","#d2854f"], "#150f0e"],
-    ["RoyrAI Metals Metalic Wealth",  ["#d4a72c","#dfe4e8","#f5d76e"], "#241310"],
+  ["Cool (Blues & Teals)", [
+    ["RoyrAI Cool Arctic Frost",     ["#4cc9f0","#4361ee","#b8c0ff"]],
+    ["RoyrAI Cool Deep Blue",        ["#3b82f6","#60a5fa","#93c5fd"], "#0e1a45"],
+    ["RoyrAI Cool Mono Teal",        ["#014f4f","#029191","#5ee0e0"]],
+    ["RoyrAI Cool Ocean Deep",       ["#023e8a","#0077b6","#48cae4"]],
+    ["RoyrAI Cool Slate & Coral",    ["#3d5a80","#98c1d9","#f5a98b"]],
+    ["RoyrAI Cool Turquoise Lagoon", ["#38bdf8","#2dd4bf","#7ae9f5"]],
   ]],
   ["Crystals", [
     ["RoyrAI Crystals Labradorite Blue",   ["#5a5248","#2e6db5","#5fb0e8"]],
@@ -51,10 +23,38 @@ const groups = [
     ["RoyrAI Crystals Labradorite Purple", ["#565049","#6a3fae","#a17be0"]],
     ["RoyrAI Crystals Rose Quartz",        ["#f7c9d4","#e7a6b3","#d28a9c"]],
   ]],
-  ["Parrots & Brand", [
+  ["Greens", [
+    ["RoyrAI Greens Citrus Bliss",  ["#ff7a00","#a8e10c","#ffe23d"], "#16280d"],
+    ["RoyrAI Greens Forest Canopy", ["#2d6a4f","#52b788","#95d5b2"]],
+    ["RoyrAI Greens Green Lime",    ["#4a8656","#8ccb67","#ddff73"], "#18280e"],
+    ["RoyrAI Greens Sage Garden",   ["#606c38","#a3b18a","#dad7cd"]],
+  ]],
+  ["Metals", [
+    ["RoyrAI Metals Bronze Bar",     ["#7a3e1e","#a85a30","#d2854f"], "#2a100e"],
+    ["RoyrAI Metals Golden Land",    ["#9c7a16","#d4a72c","#f5d76e"]],
+    ["RoyrAI Metals Metalic Wealth", ["#d4a72c","#dfe4e8","#f5d76e"], "#32200c"],
+    ["RoyrAI Metals Silver Spoon",   ["#9aa7b5","#647082","#e8edf2"], "#0d1116"],
+  ]],
+  ["Parrots (Parrots & RoyrAI Brand)", [
+    ["RoyrAI Parrots Golden-Blue Macaw", ["#1565c0","#f9c80e","#4c9a2a"], "#0a163a"],
+    ["RoyrAI Parrots Scarlet Macaw",     ["#e63016","#f6c213","#1b6fc4"], "#2e1216"],
     ["RoyrAI Parrots Teal & Gold",       ["#0fa4a0","#f7ce46","#76e4e0"]],
-    ["RoyrAI Parrots Golden-Blue Macaw", ["#1565c0","#f9c80e","#4c9a2a"]],
-    ["RoyrAI Parrots Scarlet Macaw",     ["#e63016","#f6c213","#1b6fc4"]],
+  ]],
+  ["Purples (Purples & Pinks)", [
+    ["RoyrAI Purples Cyberpunk Neon", ["#e040fb","#05d9e8","#d1f7ff"]],
+    ["RoyrAI Purples Indigo Night",   ["#6366f1","#818cf8","#a5b4fc"]],
+    ["RoyrAI Purples Purple Berry",   ["#7b2cbf","#c77dff","#e0aaff"]],
+    ["RoyrAI Purples Royal Purple",   ["#7c3aed","#a855f7","#c084fc"]],
+    ["RoyrAI Purples Star Dust",      ["#cba6f7","#89b4fa","#f5c2e7"]],
+  ]],
+  ["Warm (Reds, Oranges & Ambers)", [
+    ["RoyrAI Warm Earth Amber",  ["#7a4f01","#d99700","#ffcf56"]],
+    ["RoyrAI Warm Hot Lava",     ["#9d0208","#dc2f02","#ffba08"], "#381408"],
+    ["RoyrAI Warm Mocha Cream",  ["#6f4518","#a47148","#d4a373"], "#261d15"],
+    ["RoyrAI Warm Peach Sorbet", ["#eb8060","#f6a96d","#edc574"], "#3a241b"],
+    ["RoyrAI Warm Red Basalt",   ["#b10206","#e32602","#ff9506"]],
+    ["RoyrAI Warm Red Wine",     ["#6b1121","#ad213c","#ec516f"]],
+    ["RoyrAI Warm Sunset Ember", ["#ff6b35","#f7931e","#ffd166"]],
   ]],
 ];
 
@@ -246,7 +246,7 @@ for (const [, themes] of groups) {
 const pkg = {
   name: "royrai-vscode-themes",
   displayName: "RoyrAI Color Themes",
-  description: "A collection of 33 hand-crafted dark color themes, organized into families: blues & teals, greens, purples & pinks, warm tones, metals, labradorite crystals, and parrots.",
+  description: "A collection of 33 hand-crafted dark color themes, organized into families: cool blues & teals, crystals, greens, metals, parrots, purples & pinks, and warm tones.",
   version: "1.0.0",
   publisher: "royrai",
   engines: { vscode: "^1.70.0" },
