@@ -2,8 +2,12 @@
   "name": "royrai-vscode-themes",
   "displayName": "RoyrAI VSCode Themes",
   "description": "A collection of 33 hand-crafted dark color themes, organized into families: cool blues & teals, crystals, greens, metals, parrots, purples & pinks, and warm tones.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "royrai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/royrai/royrai-vscode-themes.git"
+  },
   "engines": {
     "vscode": "^1.70.0"
   },

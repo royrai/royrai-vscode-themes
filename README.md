@@ -32,22 +32,37 @@ RoyrAI Warm Earth Amber · RoyrAI Warm Hot Lava · RoyrAI Warm Mocha Cream · Ro
 
 ## Install from a `.vsix` file (no Marketplace needed)
 
-1. Download `royrai-vscode-themes-1.0.2.vsix`.
+1. Download `royrai-vscode-themes-1.0.3.vsix`.
 2. In VS Code: Command Palette → **Extensions: Install from VSIX…** → select the file.
-   (Or from a terminal: `code --install-extension royrai-vscode-themes-1.0.2.vsix`.)
+   (Or from a terminal: `code --install-extension royrai-vscode-themes-1.0.3.vsix`.)
 
-## Building / packaging
+## Generating the themes
 
-```bash
-npm install -g @vscode/vsce
-vsce package        # produces the .vsix
-```
+The theme JSON files in [themes/](themes/) are **not edited by hand** — they are generated from the palette data. The pipeline has two source files:
 
-To regenerate the theme JSON files from the palette data, run:
+- [themes-data.js](themes-data.js) — the palette data. Each theme is defined by 3 accent colors (`keyword`, `string`, `func`) plus optional `bg` (editor background) and `bar` (status/activity bar) overrides.
+- [gen-themes.js](gen-themes.js) — the generator. It expands every palette into a full VS Code color theme using the shared color math, writes one `themes/*.json` file per theme, and updates the `contributes.themes` list in [package.json](package.json).
 
-```bash
-node gen-themes.js
-```
+### Steps
+
+1. **Edit the palette data** in [themes-data.js](themes-data.js) — add, remove, or tweak a theme entry.
+
+2. **Generate the theme files.** From the project root (requires [Node.js](https://nodejs.org/)):
+
+   ```bash
+   node gen-themes.js
+   ```
+
+   This regenerates all `themes/*.json` files and refreshes the theme list in `package.json` (version and description are left untouched). On success it prints e.g. `Generated 33 themes + package.json`.
+
+3. **Preview / test** the themes by pressing `F5` in VS Code to launch an Extension Development Host, then switch themes with `Cmd+K Cmd+T` / `Ctrl+K Ctrl+T`.
+
+4. **Package into a `.vsix`** (only needed to distribute or install outside the dev host):
+
+   ```bash
+   npm install -g @vscode/vsce   # one-time install of the packaging tool
+   vsce package                  # produces royrai-vscode-themes-<version>.vsix
+   ```
 
 ## License
 
