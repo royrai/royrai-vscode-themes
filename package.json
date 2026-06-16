@@ -1,8 +1,8 @@
 {
   "name": "royrai-vscode-themes",
   "displayName": "RoyrAI VSCode Themes",
-  "description": "A collection of 42 hand-crafted dark color themes, organized into families: cool blues & teals, crystals, greens, metals, parrots, purples & pinks, and warm tones.",
-  "version": "1.0.4",
+  "description": "A collection of 47 hand-crafted dark color themes, organized into families: cool blues & teals, crystals, greens, metals, parrots, purples & pinks, and warm tones.",
+  "version": "1.0.5",
   "publisher": "royrai",
   "repository": {
     "type": "git",
@@ -143,6 +143,16 @@
         "path": "./themes/royrai-metals-silver-spoon-color-theme.json"
       },
       {
+        "label": "RoyrAI Parrots Brazil Carnival",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-parrots-brazil-carnival-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Parrots Brazil Samba",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-parrots-brazil-samba-color-theme.json"
+      },
+      {
         "label": "RoyrAI Parrots Golden-Blue Macaw",
         "uiTheme": "vs-dark",
         "path": "./themes/royrai-parrots-golden-blue-macaw-color-theme.json"
@@ -201,6 +211,21 @@
         "label": "RoyrAI Purples Violet Haze",
         "uiTheme": "vs-dark",
         "path": "./themes/royrai-purples-violet-haze-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Warm Dune Fremen",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-warm-dune-fremen-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Warm Dune Sands",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-warm-dune-sands-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Warm Dune Spice",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-warm-dune-spice-color-theme.json"
       },
       {
         "label": "RoyrAI Warm Earth Amber",

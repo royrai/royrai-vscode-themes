@@ -153,6 +153,7 @@ const groups = [
         keyword: "#606c38",
         string: "#a3b18a",
         func: "#dad7cd",
+        bar: "#6e7d42",
       },
     ],
   ],
@@ -196,11 +197,28 @@ const groups = [
     "Parrots (Parrots & RoyrAI Brand)",
     [
       {
+        name: "RoyrAI Parrots Brazil Carnival",
+        keyword: "#ffd400",
+        string: "#00b84d",
+        func: "#4f93e8",
+        bg: "#04184a",
+        bar: "#009c3b",
+      },
+      {
+        name: "RoyrAI Parrots Brazil Samba",
+        keyword: "#009c3b",
+        string: "#ffdf00",
+        func: "#2f6fd6",
+        bg: "#07220e",
+        bar: "#002776",
+      },
+      {
         name: "RoyrAI Parrots Golden-Blue Macaw",
         keyword: "#1565c0",
         string: "#f9c80e",
         func: "#4c9a2a",
         bg: "#0a163a",
+        bar: "#1f5fb5",
       },
       {
         name: "RoyrAI Parrots Scarlet Macaw",
@@ -208,6 +226,7 @@ const groups = [
         string: "#f6c213",
         func: "#1b6fc4",
         bg: "#2e1216",
+        bar: "#b83020",
       },
       {
         name: "RoyrAI Parrots Teal & Gold",
@@ -290,6 +309,30 @@ const groups = [
   [
     "Warm (Reds, Oranges & Ambers)",
     [
+      {
+        name: "RoyrAI Warm Dune Fremen",
+        keyword: "#3576ae",
+        string: "#68aec9",
+        func: "#e9cb8e",
+        bg: "#15171c",
+        bar: "#a5663a",
+      },
+      {
+        name: "RoyrAI Warm Dune Sands",
+        keyword: "#a5663a",
+        string: "#e9cb8e",
+        func: "#a9d8de",
+        bg: "#241308",
+        bar: "#8a4a28",
+      },
+      {
+        name: "RoyrAI Warm Dune Spice",
+        keyword: "#a5663a",
+        string: "#e9cb8e",
+        func: "#3576ae",
+        bg: "#241308",
+        bar: "#66280c",
+      },
       {
         name: "RoyrAI Warm Earth Amber",
         keyword: "#7a4f01",
