@@ -1,8 +1,8 @@
 {
   "name": "royrai-vscode-themes",
   "displayName": "RoyrAI VSCode Themes",
-  "description": "A collection of 33 hand-crafted dark color themes, organized into families: cool blues & teals, crystals, greens, metals, parrots, purples & pinks, and warm tones.",
-  "version": "1.0.3",
+  "description": "A collection of 42 hand-crafted dark color themes, organized into families: cool blues & teals, crystals, greens, metals, parrots, purples & pinks, and warm tones.",
+  "version": "1.0.4",
   "publisher": "royrai",
   "repository": {
     "type": "git",
@@ -33,6 +33,16 @@
         "path": "./themes/royrai-cool-arctic-frost-color-theme.json"
       },
       {
+        "label": "RoyrAI Cool Coral Mist",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-cool-coral-mist-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Cool Coral Slate",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-cool-coral-slate-color-theme.json"
+      },
+      {
         "label": "RoyrAI Cool Deep Blue",
         "uiTheme": "vs-dark",
         "path": "./themes/royrai-cool-deep-blue-color-theme.json"
@@ -46,11 +56,6 @@
         "label": "RoyrAI Cool Ocean Deep",
         "uiTheme": "vs-dark",
         "path": "./themes/royrai-cool-ocean-deep-color-theme.json"
-      },
-      {
-        "label": "RoyrAI Cool Slate & Coral",
-        "uiTheme": "vs-dark",
-        "path": "./themes/royrai-cool-slate-and-coral-color-theme.json"
       },
       {
         "label": "RoyrAI Cool Turquoise Lagoon",
@@ -91,6 +96,26 @@
         "label": "RoyrAI Greens Green Lime",
         "uiTheme": "vs-dark",
         "path": "./themes/royrai-greens-green-lime-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Greens Mint Branch",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-greens-mint-branch-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Greens Mint Fresh",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-greens-mint-fresh-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Greens Mint Frost",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-greens-mint-frost-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Greens Mint Mojito",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-greens-mint-mojito-color-theme.json"
       },
       {
         "label": "RoyrAI Greens Sage Garden",
@@ -138,9 +163,24 @@
         "path": "./themes/royrai-purples-cyberpunk-neon-color-theme.json"
       },
       {
+        "label": "RoyrAI Purples Grapevine",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-purples-grapevine-color-theme.json"
+      },
+      {
         "label": "RoyrAI Purples Indigo Night",
         "uiTheme": "vs-dark",
         "path": "./themes/royrai-purples-indigo-night-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Purples Neon Mint",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-purples-neon-mint-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Purples Printer Ink",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-purples-printer-ink-color-theme.json"
       },
       {
         "label": "RoyrAI Purples Purple Berry",
@@ -156,6 +196,11 @@
         "label": "RoyrAI Purples Star Dust",
         "uiTheme": "vs-dark",
         "path": "./themes/royrai-purples-star-dust-color-theme.json"
+      },
+      {
+        "label": "RoyrAI Purples Violet Haze",
+        "uiTheme": "vs-dark",
+        "path": "./themes/royrai-purples-violet-haze-color-theme.json"
       },
       {
         "label": "RoyrAI Warm Earth Amber",
