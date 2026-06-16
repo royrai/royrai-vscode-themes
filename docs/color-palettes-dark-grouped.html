@@ -95,13 +95,38 @@
         text-transform: uppercase;
         letter-spacing: 0.04em;
       }
-      .preview {
+      /* mini VS Code window: activity bar strip + editor + status bar strip */
+      .window {
         margin: 14px 16px 16px;
         border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+      }
+      .activitybar {
+        flex: 0 0 18px;
+      }
+      .editorwrap {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .preview {
+        flex: 1;
         padding: 16px 18px;
         font-family: ui-monospace, "SF Mono", Menlo, monospace;
         font-size: 12.5px;
         line-height: 1.75;
+      }
+      .statusbar {
+        height: 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 0 10px;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 10px;
+        font-weight: 600;
       }
       .ln {
         white-space: pre;
@@ -121,145 +146,92 @@
     </p>
     <p class="sub">
       33 palettes organized into 7 groups (groups listed alphabetically; themes
-      sorted by name within each group). Each card has a derived (or fixed)
-      editor <strong>background</strong> and default
-      <strong>text</strong> color; the code preview renders on the background.
-      Click any swatch to copy its hex.
+      sorted by name within each group). Each card previews a mini editor: the
+      left <strong>activity bar</strong> and bottom <strong>status bar</strong>
+      use the theme's <strong>bar</strong> color, and the code renders on the
+      editor <strong>background</strong>. Click any swatch to copy its hex.
     </p>
     <div id="root"></div>
 
     <script>
-      // entry: [name, [keyword, string, func]]  — optional 3rd element forces a background hex
+      // entry: { name, keyword, string, func, bg?, bar? }
+      //   keyword / string / func = the 3 syntax accents
+      //   bg  = editor background (optional; auto-derived if omitted)
+      //   bar = side bar / activity bar / status bar color (optional; auto-derived if omitted)
       const groups = [
         [
           "Cool (Blues & Teals)",
           "Cool water tones",
           [
-            ["RoyrAI Cool Arctic Frost", ["#4cc9f0", "#4361ee", "#b8c0ff"]],
-            [
-              "RoyrAI Cool Deep Blue",
-              ["#3b82f6", "#60a5fa", "#93c5fd"],
-              "#0e1a45",
-            ],
-            ["RoyrAI Cool Mono Teal", ["#014f4f", "#029191", "#5ee0e0"]],
-            ["RoyrAI Cool Ocean Deep", ["#023e8a", "#0077b6", "#48cae4"]],
-            ["RoyrAI Cool Slate & Coral", ["#3d5a80", "#98c1d9", "#f5a98b"]],
-            ["RoyrAI Cool Turquoise Lagoon", ["#38bdf8", "#2dd4bf", "#7ae9f5"]],
+            { name: "RoyrAI Cool Arctic Frost", keyword: "#4cc9f0", string: "#4361ee", func: "#b8c0ff", bar: "#2b3c8e" },
+            { name: "RoyrAI Cool Deep Blue", keyword: "#3b82f6", string: "#60a5fa", func: "#93c5fd", bg: "#0e1a45", bar: "#254e9e" },
+            { name: "RoyrAI Cool Mono Teal", keyword: "#014f4f", string: "#029191", func: "#5ee0e0" },
+            { name: "RoyrAI Cool Ocean Deep", keyword: "#023e8a", string: "#0077b6", func: "#48cae4", bar: "#05446b" },
+            { name: "RoyrAI Cool Slate & Coral", keyword: "#3d5a80", string: "#98c1d9", func: "#f5a98b", bar: "#835f54" },
+            { name: "RoyrAI Cool Turquoise Lagoon", keyword: "#38bdf8", string: "#2dd4bf", func: "#7ae9f5", bar: "#247093" },
           ],
         ],
         [
           "Crystals",
           "Labradorite & quartz minerals",
           [
-            [
-              "RoyrAI Crystals Labradorite Blue",
-              ["#5a5248", "#2e6db5", "#5fb0e8"],
-            ],
-            [
-              "RoyrAI Crystals Labradorite Green",
-              ["#57544a", "#2f8f5b", "#5fd49a"],
-            ],
-            [
-              "RoyrAI Crystals Labradorite Purple",
-              ["#565049", "#6a3fae", "#a17be0"],
-            ],
-            ["RoyrAI Crystals Rose Quartz", ["#f7c9d4", "#e7a6b3", "#d28a9c"]],
+            { name: "RoyrAI Crystals Labradorite Blue", keyword: "#5a5248", string: "#2e6db5", func: "#5fb0e8", bar: "#3a627f" },
+            { name: "RoyrAI Crystals Labradorite Green", keyword: "#57544a", string: "#2f8f5b", func: "#5fd49a", bar: "#3a7458" },
+            { name: "RoyrAI Crystals Labradorite Purple", keyword: "#565049", string: "#6a3fae", func: "#a17be0", bar: "#402a62" },
+            { name: "RoyrAI Crystals Rose Quartz", keyword: "#f7c9d4", string: "#e7a6b3", func: "#d28a9c", bar: "#7c535f" },
           ],
         ],
         [
           "Greens",
           "Foliage, lime & citrus",
           [
-            [
-              "RoyrAI Greens Citrus Bliss",
-              ["#ff7a00", "#a8e10c", "#ffe23d"],
-              "#16280d",
-            ],
-            ["RoyrAI Greens Forest Canopy", ["#2d6a4f", "#52b788", "#95d5b2"]],
-            [
-              "RoyrAI Greens Green Lime",
-              ["#4a8656", "#8ccb67", "#ddff73"],
-              "#18280e",
-            ],
-            ["RoyrAI Greens Sage Garden", ["#606c38", "#a3b18a", "#dad7cd"]],
+            { name: "RoyrAI Greens Citrus Bliss", keyword: "#ff7a00", string: "#a8e10c", func: "#ffe23d", bg: "#16280d" },
+            { name: "RoyrAI Greens Forest Canopy", keyword: "#2d6a4f", string: "#52b788", func: "#95d5b2" },
+            { name: "RoyrAI Greens Green Lime", keyword: "#4a8656", string: "#8ccb67", func: "#ddff73", bg: "#18280e", bar: "#7b9441" },
+            { name: "RoyrAI Greens Sage Garden", keyword: "#606c38", string: "#a3b18a", func: "#dad7cd" },
           ],
         ],
         [
           "Metals",
           "Precious & worked metal",
           [
-            [
-              "RoyrAI Metals Bronze Bar",
-              ["#7a3e1e", "#a85a30", "#d2854f"],
-              "#2a100e",
-            ],
-            ["RoyrAI Metals Golden Land", ["#9c7a16", "#d4a72c", "#f5d76e"]],
-            [
-              "RoyrAI Metals Metalic Wealth",
-              ["#d4a72c", "#dfe4e8", "#f5d76e"],
-              "#32200c",
-            ],
-            [
-              "RoyrAI Metals Silver Spoon",
-              ["#9aa7b5", "#647082", "#e8edf2"],
-              "#0d1116",
-            ],
+            { name: "RoyrAI Metals Bronze Bar", keyword: "#7a3e1e", string: "#a85a30", func: "#d2854f", bg: "#2a100e", bar: "#7e4b2f" },
+            { name: "RoyrAI Metals Golden Land", keyword: "#9c7a16", string: "#d4a72c", func: "#f5d76e", bar: "#79611d" },
+            { name: "RoyrAI Metals Metalic Wealth", keyword: "#d4a72c", string: "#dfe4e8", func: "#f5d76e", bg: "#32200c", bar: "#83641c" },
+            { name: "RoyrAI Metals Silver Spoon", keyword: "#9aa7b5", string: "#647082", func: "#e8edf2", bg: "#0d1116", bar: "#39414c" },
           ],
         ],
         [
           "Parrots (Parrots & RoyrAI Brand)",
           "Plumage & RoyrAI",
           [
-            [
-              "RoyrAI Parrots Golden-Blue Macaw",
-              ["#1565c0", "#f9c80e", "#4c9a2a"],
-              "#0a163a",
-            ],
-            [
-              "RoyrAI Parrots Scarlet Macaw",
-              ["#e63016", "#f6c213", "#1b6fc4"],
-              "#2e1216",
-            ],
-            ["RoyrAI Parrots Teal & Gold", ["#0fa4a0", "#f7ce46", "#76e4e0"]],
+            { name: "RoyrAI Parrots Golden-Blue Macaw", keyword: "#1565c0", string: "#f9c80e", func: "#4c9a2a", bg: "#0a163a" },
+            { name: "RoyrAI Parrots Scarlet Macaw", keyword: "#e63016", string: "#f6c213", func: "#1b6fc4", bg: "#2e1216" },
+            { name: "RoyrAI Parrots Teal & Gold", keyword: "#0fa4a0", string: "#f7ce46", func: "#76e4e0", bar: "#0d6261" },
           ],
         ],
         [
           "Purples (Purples & Pinks)",
           "Violet & berry",
           [
-            [
-              "RoyrAI Purples Cyberpunk Neon",
-              ["#e040fb", "#05d9e8", "#d1f7ff"],
-            ],
-            ["RoyrAI Purples Indigo Night", ["#6366f1", "#818cf8", "#a5b4fc"]],
-            ["RoyrAI Purples Purple Berry", ["#7b2cbf", "#c77dff", "#e0aaff"]],
-            ["RoyrAI Purples Royal Purple", ["#7c3aed", "#a855f7", "#c084fc"]],
-            ["RoyrAI Purples Star Dust", ["#cba6f7", "#89b4fa", "#f5c2e7"]],
+            { name: "RoyrAI Purples Cyberpunk Neon", keyword: "#e040fb", string: "#05d9e8", func: "#d1f7ff", bar: "#752584" },
+            { name: "RoyrAI Purples Indigo Night", keyword: "#6366f1", string: "#818cf8", func: "#a5b4fc" },
+            { name: "RoyrAI Purples Purple Berry", keyword: "#7b2cbf", string: "#c77dff", func: "#e0aaff" },
+            { name: "RoyrAI Purples Royal Purple", keyword: "#7c3aed", string: "#a855f7", func: "#c084fc", bar: "#4b268d" },
+            { name: "RoyrAI Purples Star Dust", keyword: "#cba6f7", string: "#89b4fa", func: "#f5c2e7", bar: "#536b94" },
           ],
         ],
         [
           "Warm (Reds, Oranges & Ambers)",
           "Fire, fruit & earth",
           [
-            ["RoyrAI Warm Earth Amber", ["#7a4f01", "#d99700", "#ffcf56"]],
-            [
-              "RoyrAI Warm Hot Lava",
-              ["#9d0208", "#dc2f02", "#ffba08"],
-              "#381408",
-            ],
-            [
-              "RoyrAI Warm Mocha Cream",
-              ["#6f4518", "#a47148", "#d4a373"],
-              "#261d15",
-            ],
-            [
-              "RoyrAI Warm Peach Sorbet",
-              ["#eb8060", "#f6a96d", "#edc574"],
-              "#3a241b",
-            ],
-            ["RoyrAI Warm Red Basalt", ["#b10206", "#e32602", "#ff9506"]],
-            ["RoyrAI Warm Red Wine", ["#6b1121", "#ad213c", "#ec516f"]],
-            ["RoyrAI Warm Sunset Ember", ["#ff6b35", "#f7931e", "#ffd166"]],
+            { name: "RoyrAI Warm Earth Amber", keyword: "#7a4f01", string: "#d99700", func: "#ffcf56" },
+            { name: "RoyrAI Warm Hot Lava", keyword: "#9d0208", string: "#dc2f02", func: "#ffba08", bg: "#381408", bar: "#822005" },
+            { name: "RoyrAI Warm Mocha Cream", keyword: "#6f4518", string: "#a47148", func: "#d4a373", bg: "#261d15", bar: "#7d6044" },
+            { name: "RoyrAI Warm Peach Sorbet", keyword: "#eb8060", string: "#f6a96d", func: "#edc574", bg: "#3a241b", bar: "#93523e" },
+            { name: "RoyrAI Warm Red Basalt", keyword: "#b10206", string: "#e32602", func: "#ff9506" },
+            { name: "RoyrAI Warm Red Wine", keyword: "#6b1121", string: "#ad213c", func: "#ec516f", bar: "#822e40" },
+            { name: "RoyrAI Warm Sunset Ember", keyword: "#ff6b35", string: "#f7931e", func: "#ffd166" },
           ],
         ],
       ];
@@ -297,12 +269,18 @@
         const lightest = cols.slice().sort((a, b) => lum(b) - lum(a))[0];
         return mix(lightest, "#f4f4fa", 0.7);
       };
+      // mirrors the generator's chrome shade (background mixed toward black)
+      const deriveBar = (bg) => mix(bg, "#000000", 0.45);
 
-      const cardHTML = ([name, cols, bgOverride]) => {
-        const [c1, c2, c3] = cols;
-        const bg = bgOverride || deriveBg(cols);
+      const cardHTML = ({ name, keyword, string, func, bg, bar }) => {
+        const c1 = keyword,
+          c2 = string,
+          c3 = func;
+        const cols = [c1, c2, c3];
+        const editorBg = bg || deriveBg(cols);
         const fg = deriveFg(cols);
-        const cmt = mix(fg, bg, 0.55);
+        const barColor = bar || deriveBar(editorBg);
+        const cmt = mix(fg, editorBg, 0.55);
         const swatch = (c, role) =>
           `<div class="swatch" style="background:${c};color:${textOn(c)}" data-hex="${c}">
        <span class="role">${role}</span>${c}
@@ -311,19 +289,28 @@
     <div class="card">
       <h2>${name}</h2>
       <div class="swatches">
-        ${swatch(bg, "bg")}
+        ${swatch(barColor, "bar")}
+        ${swatch(editorBg, "bg")}
         ${swatch(c1, "keyword")}
         ${swatch(c2, "string")}
         ${swatch(c3, "func")}
       </div>
-      <div class="preview" style="background:${bg};color:${fg}">
-        <div class="ln"><span style="color:${cmt}">// theme preview</span></div>
-        <div class="ln"><span style="color:${c1}">function</span> <span style="color:${c3}">greet</span>(<span style="color:${fg}">name</span>) {</div>
-        <div class="ln">  <span style="color:${c1}">return</span> <span style="color:${c2}">\`Hello, \${name}!\`</span>;</div>
-        <div class="ln">}</div>
-        <div class="ln"><span style="color:${c1}">const</span> <span style="color:${c3}">msg</span> = <span style="color:${c3}">greet</span>(<span style="color:${c2}">"world"</span>);</div>
+      <div class="window">
+        <div class="activitybar" style="background:${barColor}"></div>
+        <div class="editorwrap">
+          <div class="preview" style="background:${editorBg};color:${fg}">
+            <div class="ln"><span style="color:${cmt}">// theme preview</span></div>
+            <div class="ln"><span style="color:${c1}">function</span> <span style="color:${c3}">greet</span>(<span style="color:${fg}">name</span>) {</div>
+            <div class="ln">  <span style="color:${c1}">return</span> <span style="color:${c2}">\`Hello, \${name}!\`</span>;</div>
+            <div class="ln">}</div>
+            <div class="ln"><span style="color:${c1}">const</span> <span style="color:${c3}">msg</span> = <span style="color:${c3}">greet</span>(<span style="color:${c2}">"world"</span>);</div>
+          </div>
+          <div class="statusbar" style="background:${barColor};color:${textOn(barColor)}">
+            <span>&#9679; main</span><span>UTF-8</span><span>JavaScript</span>
+          </div>
+        </div>
       </div>
-      <div class="hexrow">bg ${bg}  ·  ${cols.join("  ·  ")}  ·  text ${fg}</div>
+      <div class="hexrow">bar ${barColor}  ·  bg ${editorBg}  ·  ${c1}  ·  ${c2}  ·  ${c3}  ·  text ${fg}</div>
     </div>`;
       };
 

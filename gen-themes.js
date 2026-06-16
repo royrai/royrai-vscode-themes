@@ -6,144 +6,137 @@
 const fs = require("fs");
 const path = require("path");
 
-// ── palette data (same as the grouped preview) ──
-// entry: [name, [keyword, string, func]]  — optional 3rd element forces a background hex
-const groups = [
-  ["Cool (Blues & Teals)", [
-    ["RoyrAI Cool Arctic Frost",     ["#4cc9f0","#4361ee","#b8c0ff"]],
-    ["RoyrAI Cool Deep Blue",        ["#3b82f6","#60a5fa","#93c5fd"], "#0e1a45"],
-    ["RoyrAI Cool Mono Teal",        ["#014f4f","#029191","#5ee0e0"]],
-    ["RoyrAI Cool Ocean Deep",       ["#023e8a","#0077b6","#48cae4"]],
-    ["RoyrAI Cool Slate & Coral",    ["#3d5a80","#98c1d9","#f5a98b"]],
-    ["RoyrAI Cool Turquoise Lagoon", ["#38bdf8","#2dd4bf","#7ae9f5"]],
-  ]],
-  ["Crystals", [
-    ["RoyrAI Crystals Labradorite Blue",   ["#5a5248","#2e6db5","#5fb0e8"]],
-    ["RoyrAI Crystals Labradorite Green",  ["#57544a","#2f8f5b","#5fd49a"]],
-    ["RoyrAI Crystals Labradorite Purple", ["#565049","#6a3fae","#a17be0"]],
-    ["RoyrAI Crystals Rose Quartz",        ["#f7c9d4","#e7a6b3","#d28a9c"]],
-  ]],
-  ["Greens", [
-    ["RoyrAI Greens Citrus Bliss",  ["#ff7a00","#a8e10c","#ffe23d"], "#16280d"],
-    ["RoyrAI Greens Forest Canopy", ["#2d6a4f","#52b788","#95d5b2"]],
-    ["RoyrAI Greens Green Lime",    ["#4a8656","#8ccb67","#ddff73"], "#18280e"],
-    ["RoyrAI Greens Sage Garden",   ["#606c38","#a3b18a","#dad7cd"]],
-  ]],
-  ["Metals", [
-    ["RoyrAI Metals Bronze Bar",     ["#7a3e1e","#a85a30","#d2854f"], "#2a100e"],
-    ["RoyrAI Metals Golden Land",    ["#9c7a16","#d4a72c","#f5d76e"]],
-    ["RoyrAI Metals Metalic Wealth", ["#d4a72c","#dfe4e8","#f5d76e"], "#32200c"],
-    ["RoyrAI Metals Silver Spoon",   ["#9aa7b5","#647082","#e8edf2"], "#0d1116"],
-  ]],
-  ["Parrots (Parrots & RoyrAI Brand)", [
-    ["RoyrAI Parrots Golden-Blue Macaw", ["#1565c0","#f9c80e","#4c9a2a"], "#0a163a"],
-    ["RoyrAI Parrots Scarlet Macaw",     ["#e63016","#f6c213","#1b6fc4"], "#2e1216"],
-    ["RoyrAI Parrots Teal & Gold",       ["#0fa4a0","#f7ce46","#76e4e0"]],
-  ]],
-  ["Purples (Purples & Pinks)", [
-    ["RoyrAI Purples Cyberpunk Neon", ["#e040fb","#05d9e8","#d1f7ff"]],
-    ["RoyrAI Purples Indigo Night",   ["#6366f1","#818cf8","#a5b4fc"]],
-    ["RoyrAI Purples Purple Berry",   ["#7b2cbf","#c77dff","#e0aaff"]],
-    ["RoyrAI Purples Royal Purple",   ["#7c3aed","#a855f7","#c084fc"]],
-    ["RoyrAI Purples Star Dust",      ["#cba6f7","#89b4fa","#f5c2e7"]],
-  ]],
-  ["Warm (Reds, Oranges & Ambers)", [
-    ["RoyrAI Warm Earth Amber",  ["#7a4f01","#d99700","#ffcf56"]],
-    ["RoyrAI Warm Hot Lava",     ["#9d0208","#dc2f02","#ffba08"], "#381408"],
-    ["RoyrAI Warm Mocha Cream",  ["#6f4518","#a47148","#d4a373"], "#261d15"],
-    ["RoyrAI Warm Peach Sorbet", ["#eb8060","#f6a96d","#edc574"], "#3a241b"],
-    ["RoyrAI Warm Red Basalt",   ["#b10206","#e32602","#ff9506"]],
-    ["RoyrAI Warm Red Wine",     ["#6b1121","#ad213c","#ec516f"]],
-    ["RoyrAI Warm Sunset Ember", ["#ff6b35","#f7931e","#ffd166"]],
-  ]],
-];
+const { groups } = require("./themes-data");
 
 // ── color math (mirrors the preview) ──
-const hex2rgb = h => [parseInt(h.slice(1,3),16), parseInt(h.slice(3,5),16), parseInt(h.slice(5,7),16)];
-const clamp = v => Math.round(Math.max(0, Math.min(255, v)));
-const rgb2hex = ([r,g,b]) => "#" + [r,g,b].map(v => clamp(v).toString(16).padStart(2,"0")).join("");
-const lum = h => { const [r,g,b]=hex2rgb(h); return 0.299*r+0.587*g+0.114*b; };
-const mix = (a,b,t) => { const A=hex2rgb(a), B=hex2rgb(b); return rgb2hex([0,1,2].map(i => A[i]+(B[i]-A[i])*t)); };
-const alpha = (hex, aa) => hex + aa; // aa is a 2-char hex string
+const parseHex = (hex) => [
+  parseInt(hex.slice(1, 3), 16),
+  parseInt(hex.slice(3, 5), 16),
+  parseInt(hex.slice(5, 7), 16),
+];
 
-const deriveBg = cols => {
-  const darkest = cols.slice().sort((a,b)=>lum(a)-lum(b))[0];
-  return mix(darkest, "#0a0a0d", 0.86);
+const clampChannel = (value) => Math.round(Math.max(0, Math.min(255, value)));
+
+const formatHex = ([red, green, blue]) =>
+  "#" +
+  [red, green, blue]
+    .map((channel) => clampChannel(channel).toString(16).padStart(2, "0"))
+    .join("");
+
+const getLuminance = (hex) => {
+  const [red, green, blue] = parseHex(hex);
+  return 0.299 * red + 0.587 * green + 0.114 * blue;
 };
-const deriveFg = cols => {
-  const lightest = cols.slice().sort((a,b)=>lum(b)-lum(a))[0];
-  return mix(lightest, "#f4f4fa", 0.7);
+
+const mixHex = (colorA, colorB, ratio) => {
+  const rgbA = parseHex(colorA);
+  const rgbB = parseHex(colorB);
+  return formatHex(
+    [0, 1, 2].map((idx) => rgbA[idx] + (rgbB[idx] - rgbA[idx]) * ratio),
+  );
 };
 
-const slug = name => name.toLowerCase()
-  .replace(/&/g, "and")
-  .replace(/[^a-z0-9]+/g, "-")
-  .replace(/^-+|-+$/g, "");
+// alphaHex is a 2-char hex string appended as an opacity suffix
+const addAlpha = (hex, alphaHex) => hex + alphaHex;
 
-function buildTheme(name, cols, bgOverride) {
-  const [c1, c2, c3] = cols;            // keyword, string, func
-  const bg  = bgOverride || deriveBg(cols);
-  const fg  = deriveFg(cols);
-  const cmt = mix(fg, bg, 0.5);          // muted comment
-  const num = mix(c2, c3, 0.5);          // numbers/constants
-  const punct = mix(fg, bg, 0.32);       // operators/punctuation
+const deriveBg = (accents) => {
+  const darkest = accents
+    .slice()
+    .sort((colorA, colorB) => getLuminance(colorA) - getLuminance(colorB))[0];
+  return mixHex(darkest, "#0a0a0d", 0.86);
+};
 
-  const bgDark   = mix(bg, "#000000", 0.45);  // activity bar / title bar
-  const bgPanel  = mix(bg, "#000000", 0.25);  // side bar / tabs strip
-  const bgLight  = mix(bg, fg, 0.06);         // line highlight / hover
-  const bgSel    = mix(bg, c1, 0.30);         // selection
+const deriveFg = (accents) => {
+  const lightest = accents
+    .slice()
+    .sort((colorA, colorB) => getLuminance(colorB) - getLuminance(colorA))[0];
+  return mixHex(lightest, "#f4f4fa", 0.7);
+};
+
+const buildSlug = (name) =>
+  name
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+function buildTheme(theme) {
+  const {
+    name,
+    keyword: keywordColor,
+    string: stringColor,
+    func: funcColor,
+    bg: bgOverride,
+    bar,
+  } = theme;
+  const accents = [keywordColor, stringColor, funcColor];
+  const bg = bgOverride || deriveBg(accents);
+  const fg = deriveFg(accents);
+  const cmt = mixHex(fg, bg, 0.5); // muted comment
+  const num = mixHex(stringColor, funcColor, 0.5); // numbers/constants
+  const punct = mixHex(fg, bg, 0.32); // operators/punctuation
+
+  const bgDark = mixHex(bg, "#000000", 0.45); // activity bar / title bar
+  const bgPanel = mixHex(bg, "#000000", 0.25); // side bar / tabs strip
+  const bgLight = mixHex(bg, fg, 0.06); // line highlight / hover
+  const bgSel = mixHex(bg, keywordColor, 0.3); // selection
+
+  const badgeFg = getLuminance(keywordColor) > 140 ? "#111111" : "#ffffff";
+
+  const barBg = bar || bgDark; // status bar / activity bar (bar override)
+  const barFg = getLuminance(barBg) > 140 ? "#111111" : "#ffffff";
 
   return {
     name,
     type: "dark",
     semanticHighlighting: true,
     colors: {
-      "focusBorder": c1,
-      "foreground": fg,
+      focusBorder: keywordColor,
+      foreground: fg,
       "editor.background": bg,
       "editor.foreground": fg,
-      "editorLineNumber.foreground": mix(fg, bg, 0.6),
-      "editorLineNumber.activeForeground": c3,
-      "editorCursor.foreground": c3,
+      "editorLineNumber.foreground": mixHex(fg, bg, 0.6),
+      "editorLineNumber.activeForeground": funcColor,
+      "editorCursor.foreground": funcColor,
       "editor.selectionBackground": bgSel,
-      "editor.selectionHighlightBackground": alpha(c1, "22"),
+      "editor.selectionHighlightBackground": addAlpha(keywordColor, "22"),
       "editor.lineHighlightBackground": bgLight,
-      "editor.findMatchBackground": alpha(c3, "55"),
-      "editor.findMatchHighlightBackground": alpha(c3, "33"),
-      "editorWhitespace.foreground": mix(bg, fg, 0.18),
-      "editorIndentGuide.background1": mix(bg, fg, 0.12),
-      "editorIndentGuide.activeBackground1": mix(bg, fg, 0.3),
-      "editorBracketMatch.border": c3,
+      "editor.findMatchBackground": addAlpha(funcColor, "55"),
+      "editor.findMatchHighlightBackground": addAlpha(funcColor, "33"),
+      "editorWhitespace.foreground": mixHex(bg, fg, 0.18),
+      "editorIndentGuide.background1": mixHex(bg, fg, 0.12),
+      "editorIndentGuide.activeBackground1": mixHex(bg, fg, 0.3),
+      "editorBracketMatch.border": funcColor,
       "editorWidget.background": bgPanel,
       "editorHoverWidget.background": bgPanel,
       "editorSuggestWidget.background": bgPanel,
       "editorSuggestWidget.selectedBackground": bgSel,
 
       "sideBar.background": bgPanel,
-      "sideBar.foreground": mix(fg, bg, 0.15),
+      "sideBar.foreground": mixHex(fg, bg, 0.15),
       "sideBarTitle.foreground": fg,
       "sideBarSectionHeader.background": bgDark,
 
-      "activityBar.background": bgDark,
-      "activityBar.foreground": c3,
-      "activityBar.inactiveForeground": mix(fg, bg, 0.55),
-      "activityBarBadge.background": c1,
-      "activityBarBadge.foreground": lum(c1) > 140 ? "#111111" : "#ffffff",
+      "activityBar.background": barBg,
+      "activityBar.foreground": barFg,
+      "activityBar.inactiveForeground": mixHex(barFg, barBg, 0.55),
+      "activityBarBadge.background": keywordColor,
+      "activityBarBadge.foreground": badgeFg,
 
       "titleBar.activeBackground": bgDark,
       "titleBar.activeForeground": fg,
       "titleBar.inactiveBackground": bgDark,
 
-      "statusBar.background": bgDark,
-      "statusBar.foreground": mix(fg, bg, 0.1),
-      "statusBar.noFolderBackground": bgDark,
-      "statusBar.debuggingBackground": c1,
+      "statusBar.background": barBg,
+      "statusBar.foreground": mixHex(barFg, barBg, 0.1),
+      "statusBar.noFolderBackground": barBg,
+      "statusBar.debuggingBackground": keywordColor,
 
       "tab.activeBackground": bg,
       "tab.inactiveBackground": bgPanel,
       "tab.activeForeground": fg,
-      "tab.inactiveForeground": mix(fg, bg, 0.5),
-      "tab.activeBorderTop": c3,
+      "tab.inactiveForeground": mixHex(fg, bg, 0.5),
+      "tab.activeBorderTop": funcColor,
       "tab.border": bgDark,
       "editorGroupHeader.tabsBackground": bgPanel,
       "editorGroup.border": bgDark,
@@ -151,77 +144,145 @@ function buildTheme(name, cols, bgOverride) {
       "panel.background": bg,
       "panel.border": bgDark,
       "panelTitle.activeForeground": fg,
-      "panelTitle.inactiveForeground": mix(fg, bg, 0.5),
+      "panelTitle.inactiveForeground": mixHex(fg, bg, 0.5),
 
       "list.activeSelectionBackground": bgSel,
       "list.activeSelectionForeground": fg,
       "list.hoverBackground": bgLight,
-      "list.highlightForeground": c3,
+      "list.highlightForeground": funcColor,
 
-      "badge.background": c1,
-      "badge.foreground": lum(c1) > 140 ? "#111111" : "#ffffff",
-      "button.background": c1,
-      "button.foreground": lum(c1) > 140 ? "#111111" : "#ffffff",
-      "button.hoverBackground": mix(c1, fg, 0.15),
-      "progressBar.background": c3,
+      "badge.background": keywordColor,
+      "badge.foreground": badgeFg,
+      "button.background": keywordColor,
+      "button.foreground": badgeFg,
+      "button.hoverBackground": mixHex(keywordColor, fg, 0.15),
+      "progressBar.background": funcColor,
 
       "input.background": bgLight,
       "input.foreground": fg,
-      "input.border": mix(bg, fg, 0.15),
-      "inputOption.activeBorder": c3,
+      "input.border": mixHex(bg, fg, 0.15),
+      "inputOption.activeBorder": funcColor,
       "dropdown.background": bgPanel,
 
-      "scrollbarSlider.background": alpha(fg, "22"),
-      "scrollbarSlider.hoverBackground": alpha(fg, "33"),
-      "scrollbarSlider.activeBackground": alpha(fg, "44"),
+      "scrollbarSlider.background": addAlpha(fg, "22"),
+      "scrollbarSlider.hoverBackground": addAlpha(fg, "33"),
+      "scrollbarSlider.activeBackground": addAlpha(fg, "44"),
 
-      "textLink.foreground": c3,
-      "textLink.activeForeground": c2,
+      "textLink.foreground": funcColor,
+      "textLink.activeForeground": stringColor,
 
-      "gitDecoration.modifiedResourceForeground": c3,
-      "gitDecoration.addedResourceForeground": c2,
-      "gitDecoration.deletedResourceForeground": mix("#e53e3e", fg, 0.2),
-      "gitDecoration.untrackedResourceForeground": c1,
+      "gitDecoration.modifiedResourceForeground": funcColor,
+      "gitDecoration.addedResourceForeground": stringColor,
+      "gitDecoration.deletedResourceForeground": mixHex("#e53e3e", fg, 0.2),
+      "gitDecoration.untrackedResourceForeground": keywordColor,
 
       "terminal.background": bg,
       "terminal.foreground": fg,
-      "terminalCursor.foreground": c3,
+      "terminalCursor.foreground": funcColor,
 
-      "minimap.selectionHighlight": c1,
+      "minimap.selectionHighlight": keywordColor,
     },
     tokenColors: [
-      { scope: ["comment", "punctuation.definition.comment"],
-        settings: { foreground: cmt, fontStyle: "italic" } },
-      { scope: ["string", "string.quoted", "string.template", "punctuation.definition.string"],
-        settings: { foreground: c2 } },
-      { scope: ["constant.numeric", "constant.language", "constant.character", "constant.other"],
-        settings: { foreground: num } },
-      { scope: ["keyword", "keyword.control", "storage", "storage.type", "storage.modifier", "keyword.operator.new"],
-        settings: { foreground: c1 } },
-      { scope: ["keyword.operator", "punctuation", "meta.brace", "punctuation.separator", "punctuation.terminator"],
-        settings: { foreground: punct } },
-      { scope: ["entity.name.function", "support.function", "meta.function-call", "variable.function"],
-        settings: { foreground: c3 } },
-      { scope: ["entity.name.type", "entity.name.class", "support.type", "support.class", "entity.other.inherited-class"],
-        settings: { foreground: mix(c3, fg, 0.15) } },
-      { scope: ["variable", "variable.other", "meta.definition.variable"],
-        settings: { foreground: fg } },
-      { scope: ["variable.parameter"],
-        settings: { foreground: mix(fg, c3, 0.25) } },
-      { scope: ["variable.language", "variable.language.this"],
-        settings: { foreground: c1, fontStyle: "italic" } },
-      { scope: ["entity.name.tag", "punctuation.definition.tag"],
-        settings: { foreground: c1 } },
-      { scope: ["entity.other.attribute-name"],
-        settings: { foreground: c3 } },
-      { scope: ["support.type.property-name", "meta.object-literal.key"],
-        settings: { foreground: mix(c3, fg, 0.1) } },
-      { scope: ["markup.heading", "entity.name.section"],
-        settings: { foreground: c3, fontStyle: "bold" } },
+      {
+        scope: ["comment", "punctuation.definition.comment"],
+        settings: { foreground: cmt, fontStyle: "italic" },
+      },
+      {
+        scope: [
+          "string",
+          "string.quoted",
+          "string.template",
+          "punctuation.definition.string",
+        ],
+        settings: { foreground: stringColor },
+      },
+      {
+        scope: [
+          "constant.numeric",
+          "constant.language",
+          "constant.character",
+          "constant.other",
+        ],
+        settings: { foreground: num },
+      },
+      {
+        scope: [
+          "keyword",
+          "keyword.control",
+          "storage",
+          "storage.type",
+          "storage.modifier",
+          "keyword.operator.new",
+        ],
+        settings: { foreground: keywordColor },
+      },
+      {
+        scope: [
+          "keyword.operator",
+          "punctuation",
+          "meta.brace",
+          "punctuation.separator",
+          "punctuation.terminator",
+        ],
+        settings: { foreground: punct },
+      },
+      {
+        scope: [
+          "entity.name.function",
+          "support.function",
+          "meta.function-call",
+          "variable.function",
+        ],
+        settings: { foreground: funcColor },
+      },
+      {
+        scope: [
+          "entity.name.type",
+          "entity.name.class",
+          "support.type",
+          "support.class",
+          "entity.other.inherited-class",
+        ],
+        settings: { foreground: mixHex(funcColor, fg, 0.15) },
+      },
+      {
+        scope: ["variable", "variable.other", "meta.definition.variable"],
+        settings: { foreground: fg },
+      },
+      {
+        scope: ["variable.parameter"],
+        settings: { foreground: mixHex(fg, funcColor, 0.25) },
+      },
+      {
+        scope: ["variable.language", "variable.language.this"],
+        settings: { foreground: keywordColor, fontStyle: "italic" },
+      },
+      {
+        scope: ["entity.name.tag", "punctuation.definition.tag"],
+        settings: { foreground: keywordColor },
+      },
+      {
+        scope: ["entity.other.attribute-name"],
+        settings: { foreground: funcColor },
+      },
+      {
+        scope: ["support.type.property-name", "meta.object-literal.key"],
+        settings: { foreground: mixHex(funcColor, fg, 0.1) },
+      },
+      {
+        scope: ["markup.heading", "entity.name.section"],
+        settings: { foreground: funcColor, fontStyle: "bold" },
+      },
       { scope: ["markup.bold"], settings: { fontStyle: "bold" } },
       { scope: ["markup.italic"], settings: { fontStyle: "italic" } },
-      { scope: ["markup.inline.raw", "markup.fenced_code"], settings: { foreground: c2 } },
-      { scope: ["invalid", "invalid.illegal"], settings: { foreground: "#ff5370" } },
+      {
+        scope: ["markup.inline.raw", "markup.fenced_code"],
+        settings: { foreground: stringColor },
+      },
+      {
+        scope: ["invalid", "invalid.illegal"],
+        settings: { foreground: "#ff5370" },
+      },
     ],
   };
 }
@@ -234,27 +295,27 @@ fs.mkdirSync(themesDir, { recursive: true });
 const contributes = [];
 let count = 0;
 for (const [, themes] of groups) {
-  for (const [name, cols, bgOverride] of themes) {
-    const theme = buildTheme(name, cols, bgOverride);
-    const file = `${slug(name)}-color-theme.json`;
-    fs.writeFileSync(path.join(themesDir, file), JSON.stringify(theme, null, 2) + "\n");
-    contributes.push({ label: name, uiTheme: "vs-dark", path: `./themes/${file}` });
+  for (const themeData of themes) {
+    const theme = buildTheme(themeData);
+    const file = `${buildSlug(themeData.name)}-color-theme.json`;
+    fs.writeFileSync(
+      path.join(themesDir, file),
+      JSON.stringify(theme, null, 2) + "\n",
+    );
+    contributes.push({
+      label: themeData.name,
+      uiTheme: "vs-dark",
+      path: `./themes/${file}`,
+    });
     count++;
   }
 }
 
-const pkg = {
-  name: "royrai-vscode-themes",
-  displayName: "RoyrAI Color Themes",
-  description: "A collection of 33 hand-crafted dark color themes, organized into families: cool blues & teals, crystals, greens, metals, parrots, purples & pinks, and warm tones.",
-  version: "1.0.0",
-  publisher: "royrai",
-  engines: { vscode: "^1.70.0" },
-  categories: ["Themes"],
-  keywords: ["theme", "dark", "color theme", "palette", "royrai"],
-  galleryBanner: { color: "#0d0d12", theme: "dark" },
-  contributes: { themes: contributes },
-};
-fs.writeFileSync(path.join(outDir, "package.json"), JSON.stringify(pkg, null, 2) + "\n");
+// Read the existing package.json and update only the themes list,
+// leaving version, description, and everything else untouched.
+const pkgPath = path.join(outDir, "package.json");
+const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
+pkg.contributes = { ...pkg.contributes, themes: contributes };
+fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
 
 console.log(`Generated ${count} themes + package.json`);

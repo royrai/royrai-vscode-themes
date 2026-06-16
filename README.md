@@ -1,4 +1,4 @@
-# RoyrAI Color Themes
+# RoyrAI VSCode Themes
 
 A collection of **33 hand-crafted dark color themes** for Visual Studio Code, organized into color families.
 
@@ -32,9 +32,9 @@ RoyrAI Warm Earth Amber · RoyrAI Warm Hot Lava · RoyrAI Warm Mocha Cream · Ro
 
 ## Install from a `.vsix` file (no Marketplace needed)
 
-1. Download `royrai-vscode-themes-1.0.01.vsix`.
+1. Download `royrai-vscode-themes-1.0.2.vsix`.
 2. In VS Code: Command Palette → **Extensions: Install from VSIX…** → select the file.
-   (Or from a terminal: `code --install-extension royrai-vscode-themes-1.0.01.vsix`.)
+   (Or from a terminal: `code --install-extension royrai-vscode-themes-1.0.2.vsix`.)
 
 ## Building / packaging
 
