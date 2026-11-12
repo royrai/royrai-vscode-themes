@@ -1,3 +1,7 @@
 gen-themes.js
 .vscodeignore
 **/.DS_Store
+docs/**
+.vscode/**
+themes-data.js
+.gitignore

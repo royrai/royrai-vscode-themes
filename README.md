@@ -1,6 +1,6 @@
 # RoyrAI VSCode Themes
 
-A collection of **47 hand-crafted dark color themes** for Visual Studio Code, organized into color families.
+A collection of **65 hand-crafted dark color themes** for Visual Studio Code, organized into color families.
 
 ## Themes
 
@@ -10,8 +10,11 @@ A collection of **47 hand-crafted dark color themes** for Visual Studio Code, or
 - RoyrAI Cool Coral Mist
 - RoyrAI Cool Coral Slate
 - RoyrAI Cool Deep Blue
+- RoyrAI Cool Harbor Lights
 - RoyrAI Cool Mono Teal
+- RoyrAI Cool Night Lantern
 - RoyrAI Cool Ocean Deep
+- RoyrAI Cool Teal Dusk
 - RoyrAI Cool Turquoise Lagoon
 
 **Crystals**:
@@ -24,6 +27,7 @@ A collection of **47 hand-crafted dark color themes** for Visual Studio Code, or
 **Greens**:
 
 - RoyrAI Greens Citrus Bliss
+- RoyrAI Greens Emerald Sky
 - RoyrAI Greens Forest Canopy
 - RoyrAI Greens Green Lime
 - RoyrAI Greens Mint Branch
@@ -35,7 +39,9 @@ A collection of **47 hand-crafted dark color themes** for Visual Studio Code, or
 **Metals**:
 
 - RoyrAI Metals Bronze Bar
+- RoyrAI Metals Ember Graphite
 - RoyrAI Metals Golden Land
+- RoyrAI Metals Gunmetal Gold
 - RoyrAI Metals Metalic Wealth
 - RoyrAI Metals Silver Spoon
 
@@ -49,8 +55,10 @@ A collection of **47 hand-crafted dark color themes** for Visual Studio Code, or
 
 **Purples** (Purples & Pinks):
 
+- RoyrAI Purples Amethyst Ember
 - RoyrAI Purples Cyberpunk Neon
 - RoyrAI Purples Grapevine
+- RoyrAI Purples Indigo Blossom
 - RoyrAI Purples Indigo Night
 - RoyrAI Purples Neon Mint
 - RoyrAI Purples Printer Ink
@@ -58,19 +66,32 @@ A collection of **47 hand-crafted dark color themes** for Visual Studio Code, or
 - RoyrAI Purples Royal Purple
 - RoyrAI Purples Star Dust
 - RoyrAI Purples Violet Haze
+- RoyrAI Purples Violet Prism
+
+**Tech**:
+
+- RoyrAI Tech Copper Chip
+- RoyrAI Tech Quantum Steel
+- RoyrAI Tech Titanium Leaf
 
 **Warm** (Reds, Oranges & Ambers):
 
+- RoyrAI Warm Burgundy Cornflower
+- RoyrAI Warm Burgundy Frost
+- RoyrAI Warm Burgundy Persimmon
+- RoyrAI Warm Burgundy Sky
 - RoyrAI Warm Dune Fremen
 - RoyrAI Warm Dune Sands
 - RoyrAI Warm Dune Spice
 - RoyrAI Warm Earth Amber
 - RoyrAI Warm Hot Lava
+- RoyrAI Warm Lighthouse
 - RoyrAI Warm Mocha Cream
 - RoyrAI Warm Peach Sorbet
 - RoyrAI Warm Red Basalt
 - RoyrAI Warm Red Wine
 - RoyrAI Warm Sunset Ember
+- RoyrAI Warm Tangerine Velvet
 
 ## How to use
 
@@ -79,9 +100,9 @@ A collection of **47 hand-crafted dark color themes** for Visual Studio Code, or
 
 ## Install from a `.vsix` file (no Marketplace needed)
 
-1. Download `royrai-vscode-themes-1.0.5.vsix`.
+1. Download `royrai-vscode-themes-1.0.6.vsix`.
 2. In VS Code: Command Palette → **Extensions: Install from VSIX…** → select the file.
-   (Or from a terminal: `code --install-extension royrai-vscode-themes-1.0.5.vsix`.)
+   (Or from a terminal: `code --install-extension royrai-vscode-themes-1.0.6.vsix`.)
 
 ## Generating the themes
 
