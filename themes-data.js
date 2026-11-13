@@ -23,13 +23,6 @@ const groups = [
         bar: "#3d5a80",
       },
       {
-        name: "RoyrAI Cool Coral Slate",
-        keyword: "#5378a6",
-        string: "#bcdaeb",
-        func: "#f9bfa8",
-        bar: "#9d7468",
-      },
-      {
         name: "RoyrAI Cool Deep Blue",
         keyword: "#3b82f6",
         string: "#60a5fa",
@@ -354,13 +347,6 @@ const groups = [
         bar: "#4b268d",
       },
       {
-        name: "RoyrAI Purples Star Dust",
-        keyword: "#cba6f7",
-        string: "#89b4fa",
-        func: "#f5c2e7",
-        bar: "#536b94",
-      },
-      {
         name: "RoyrAI Purples Violet Haze",
         keyword: "#c792ea",
         string: "#ff7edb",
@@ -398,6 +384,21 @@ const groups = [
         bar: "#2b3350",
       },
       {
+        name: "RoyrAI Tech Signature Chip",
+        keyword: "#0fa4a0",
+        string: "#f7ce46",
+        func: "#dfe6ee",
+        bg: "#11161b",
+        bar: "#6b7684",
+      },
+      {
+        name: "RoyrAI Tech Star Dust",
+        keyword: "#cba6f7",
+        string: "#89b4fa",
+        func: "#f5c2e7",
+        bar: "#536b94",
+      },
+      {
         name: "RoyrAI Tech Titanium Leaf",
         keyword: "#7aa2c8",
         string: "#7ee787",
@@ -411,20 +412,20 @@ const groups = [
     "Warm (Reds, Oranges & Ambers)",
     [
       {
-        name: "RoyrAI Warm Burgundy Cornflower",
-        keyword: "#d6416f",
-        string: "#4f8dff",
-        func: "#f2b8c9",
-        bg: "#1c0812",
-        bar: "#870c3e",
-      },
-      {
         name: "RoyrAI Warm Burgundy Frost",
         keyword: "#d6416f",
         string: "#8fd3ff",
         func: "#e6f4ff",
         bg: "#1f0710",
         bar: "#870c3e",
+      },
+      {
+        name: "RoyrAI Warm Burgundy Night",
+        keyword: "#d6416f",
+        string: "#5aa9ff",
+        func: "#b8dcff",
+        bg: "#10102a",
+        bar: "#6e0a33",
       },
       {
         name: "RoyrAI Warm Burgundy Persimmon",
@@ -435,12 +436,19 @@ const groups = [
         bar: "#870c3e",
       },
       {
-        name: "RoyrAI Warm Burgundy Sky",
+        name: "RoyrAI Warm Burgundy Plum",
         keyword: "#d6416f",
-        string: "#5aa9ff",
-        func: "#b8dcff",
-        bg: "#160a1c",
-        bar: "#6e0a33",
+        string: "#4f8dff",
+        func: "#f2b8c9",
+        bg: "#180c24",
+        bar: "#870c3e",
+      },
+      {
+        name: "RoyrAI Warm Coral Slate",
+        keyword: "#5378a6",
+        string: "#bcdaeb",
+        func: "#f9bfa8",
+        bar: "#9d7468",
       },
       {
         name: "RoyrAI Warm Dune Fremen",

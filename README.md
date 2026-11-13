@@ -1,6 +1,6 @@
 # RoyrAI VSCode Themes
 
-A collection of **65 hand-crafted dark color themes** for Visual Studio Code, organized into color families.
+A collection of **66 hand-crafted dark color themes** for Visual Studio Code, organized into color families.
 
 ## Themes
 
@@ -8,7 +8,6 @@ A collection of **65 hand-crafted dark color themes** for Visual Studio Code, or
 
 - RoyrAI Cool Arctic Frost
 - RoyrAI Cool Coral Mist
-- RoyrAI Cool Coral Slate
 - RoyrAI Cool Deep Blue
 - RoyrAI Cool Harbor Lights
 - RoyrAI Cool Mono Teal
@@ -64,7 +63,6 @@ A collection of **65 hand-crafted dark color themes** for Visual Studio Code, or
 - RoyrAI Purples Printer Ink
 - RoyrAI Purples Purple Berry
 - RoyrAI Purples Royal Purple
-- RoyrAI Purples Star Dust
 - RoyrAI Purples Violet Haze
 - RoyrAI Purples Violet Prism
 
@@ -72,14 +70,17 @@ A collection of **65 hand-crafted dark color themes** for Visual Studio Code, or
 
 - RoyrAI Tech Copper Chip
 - RoyrAI Tech Quantum Steel
+- RoyrAI Tech Signature Chip
+- RoyrAI Tech Star Dust
 - RoyrAI Tech Titanium Leaf
 
 **Warm** (Reds, Oranges & Ambers):
 
-- RoyrAI Warm Burgundy Cornflower
 - RoyrAI Warm Burgundy Frost
+- RoyrAI Warm Burgundy Night
 - RoyrAI Warm Burgundy Persimmon
-- RoyrAI Warm Burgundy Sky
+- RoyrAI Warm Burgundy Plum
+- RoyrAI Warm Coral Slate
 - RoyrAI Warm Dune Fremen
 - RoyrAI Warm Dune Sands
 - RoyrAI Warm Dune Spice
@@ -121,7 +122,9 @@ The theme JSON files in [themes/](themes/) are **not edited by hand** — they a
    node gen-themes.js
    ```
 
-   This regenerates all `themes/*.json` files and refreshes the theme list in `package.json` (version and description are left untouched). On success it prints e.g. `Generated 65 themes + package.json`.
+   This regenerates all `themes/*.json` files and refreshes the theme list in `package.json` (version and description are left untouched). On success it prints e.g. `Generated 66 themes + package.json`.
+
+   The generator does not delete files. If you rename or remove a theme, delete its old `themes/*.json` file yourself.
 
 3. **Preview / test** the themes by pressing `F5` in VS Code to launch an Extension Development Host, then switch themes with `Cmd+K Cmd+T` / `Ctrl+K Ctrl+T`.
 
@@ -151,7 +154,7 @@ royrai-vscode-themes/
 
 - [themes-data.js](themes-data.js) — the only file to edit when adding or changing a theme.
 - [gen-themes.js](gen-themes.js) — run it after every change to `themes-data.js`.
-- [docs/color-palettes-dark-grouped.html](docs/color-palettes-dark-grouped.html) — open in a browser to preview every palette. It holds its own copy of the palette data, so update it together with `themes-data.js`.
+- [docs/color-palettes-dark-grouped.html](docs/color-palettes-dark-grouped.html) — open in a browser to preview every palette, or tick **Compare** on 2–4 cards to see them side by side in a larger editor preview. It holds its own copy of the palette data, so update it together with `themes-data.js`.
 - [CHANGELOG.md](CHANGELOG.md) — add an entry for every new version.
 
 ## License

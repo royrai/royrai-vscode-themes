@@ -2,13 +2,15 @@
 
 ## 1.0.6
 
-- Add 18 themes (65 themes across 8 color families):
+- Add 19 themes (66 themes across 8 color families):
   - **Cool:** Harbor Lights, Night Lantern, Teal Dusk
   - **Greens:** Emerald Sky
   - **Metals:** Ember Graphite, Gunmetal Gold
   - **Purples:** Amethyst Ember, Indigo Blossom, Violet Prism
-  - **Tech** (new family): Copper Chip, Quantum Steel, Titanium Leaf
-  - **Warm:** Burgundy Cornflower, Burgundy Frost, Burgundy Persimmon, Burgundy Sky, Lighthouse, Tangerine Velvet
+  - **Tech** (new family): Copper Chip, Quantum Steel, Signature Chip, Titanium Leaf
+  - **Warm:** Burgundy Frost, Burgundy Night, Burgundy Persimmon, Burgundy Plum, Lighthouse, Tangerine Velvet
+- Move Cool Coral Slate to Warm Coral Slate, and Purples Star Dust to Tech Star Dust.
+- Add a side-by-side compare view to the palette preview page.
 
 ## 1.0.5
 
