@@ -137,6 +137,226 @@
         color: #8a8aa0;
         padding: 0 16px 14px;
       }
+      /* ── compare: card checkbox ── */
+      .card-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding-right: 14px;
+      }
+      .pick {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: #9a9ab0;
+        cursor: pointer;
+        white-space: nowrap;
+        user-select: none;
+      }
+      .pick input {
+        width: 16px;
+        height: 16px;
+        accent-color: #0fa4a0;
+        cursor: pointer;
+      }
+      .card.picked {
+        border-color: #0fa4a0;
+        box-shadow: 0 0 0 1px #0fa4a0;
+      }
+      body {
+        padding-bottom: 96px;
+      }
+      /* ── compare: bottom bar ── */
+      .cmpbar {
+        position: fixed;
+        left: 50%;
+        bottom: 18px;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        background: #1d1d29;
+        border: 1px solid #33334a;
+        border-radius: 12px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+        font-size: 13px;
+        z-index: 10;
+        max-width: calc(100vw - 32px);
+      }
+      .cmpbar .hint {
+        color: #9a9ab0;
+      }
+      .btn {
+        font: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 7px 14px;
+        border-radius: 8px;
+        border: 1px solid #33334a;
+        background: #262636;
+        color: #e6e6ee;
+        cursor: pointer;
+      }
+      .btn:hover:not(:disabled) {
+        background: #30304a;
+      }
+      .btn.primary {
+        background: #0fa4a0;
+        border-color: #0fa4a0;
+        color: #fff;
+      }
+      .btn.primary:hover:not(:disabled) {
+        background: #0d8f8b;
+      }
+      .btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      /* ── compare: full-screen view ── */
+      .cmpview {
+        position: fixed;
+        inset: 0;
+        background: #0d0d12;
+        z-index: 20;
+        overflow: auto;
+        padding: 20px 24px 32px;
+      }
+      .cmpview[hidden] {
+        display: none;
+      }
+      .cmphead {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .cmphead h2 {
+        font-size: 20px;
+        margin-right: auto;
+      }
+      select {
+        font: inherit;
+        font-size: 13px;
+        padding: 6px 8px;
+        border-radius: 8px;
+        border: 1px solid #33334a;
+        background: #1d1d29;
+        color: #e6e6ee;
+        max-width: 100%;
+      }
+      .cmpgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 18px;
+      }
+      .cmpcol {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        min-width: 0;
+        container-type: inline-size;
+      }
+      /* narrow columns: drop the file list so the code has room */
+      @container (max-width: 560px) {
+        .ide-side {
+          display: none;
+        }
+        .ide {
+          font-size: 11.5px;
+        }
+        .ide-code .num {
+          flex-basis: 30px;
+          padding-right: 10px;
+        }
+      }
+      .cmpcol-head {
+        display: flex;
+        gap: 8px;
+      }
+      .cmpcol-head select {
+        flex: 1;
+        min-width: 0;
+      }
+      .ide {
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 12.5px;
+        border: 1px solid #262633;
+      }
+      .ide-body {
+        display: flex;
+        min-height: 0;
+      }
+      .ide-activity {
+        flex: 0 0 34px;
+      }
+      .ide-side {
+        flex: 0 0 120px;
+        padding: 10px 0;
+        font-size: 11.5px;
+      }
+      .ide-side div {
+        padding: 2px 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .ide-main {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .ide-tabs {
+        display: flex;
+        font-size: 11.5px;
+      }
+      .ide-tabs span {
+        padding: 7px 12px;
+        border-top: 2px solid transparent;
+        white-space: nowrap;
+      }
+      .ide-code {
+        padding: 10px 0;
+        line-height: 1.7;
+        overflow-x: auto;
+      }
+      .ide-code .row {
+        display: flex;
+        white-space: pre;
+      }
+      .ide-code .num {
+        flex: 0 0 38px;
+        text-align: right;
+        padding-right: 14px;
+      }
+      .ide-status {
+        height: 22px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 0 10px;
+        font-size: 10.5px;
+        font-weight: 600;
+      }
+      @media (max-width: 600px) {
+        body {
+          padding: 16px;
+        }
+        .ide-side {
+          display: none;
+        }
+        .cmpgrid {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
@@ -145,13 +365,30 @@
       Updated: 2026-11-13
     </p>
     <p class="sub">
-      65 palettes organized into 8 groups (groups listed alphabetically; themes
+      66 palettes organized into 8 groups (groups listed alphabetically; themes
       sorted by name within each group). Each card previews a mini editor: the
       left <strong>activity bar</strong> and bottom <strong>status bar</strong>
       use the theme's <strong>bar</strong> color, and the code renders on the
       editor <strong>background</strong>. Click any swatch to copy its hex.
+      To compare themes side by side, tick <strong>Compare</strong> on 2–4
+      cards and press the <strong>Compare</strong> button at the bottom.
     </p>
     <div id="root"></div>
+
+    <div class="cmpbar" id="cmpbar">
+      <span class="hint" id="cmphint">Tick 2–4 themes to compare</span>
+      <button class="btn" id="cmpclear" disabled>Clear</button>
+      <button class="btn primary" id="cmpopen" disabled>Compare</button>
+    </div>
+
+    <div class="cmpview" id="cmpview" hidden>
+      <div class="cmphead">
+        <h2>Compare themes</h2>
+        <select id="cmpadd" aria-label="Add a theme to the comparison"></select>
+        <button class="btn" id="cmpclose">Close (Esc)</button>
+      </div>
+      <div class="cmpgrid" id="cmpgrid"></div>
+    </div>
 
     <script>
       // entry: { name, keyword, string, func, bg?, bar? }
@@ -165,7 +402,6 @@
           [
             { name: "RoyrAI Cool Arctic Frost", keyword: "#4cc9f0", string: "#4361ee", func: "#b8c0ff", bar: "#2b3c8e" },
             { name: "RoyrAI Cool Coral Mist", keyword: "#3d5a80", string: "#98c1d9", func: "#f5a98b", bar: "#3d5a80" },
-            { name: "RoyrAI Cool Coral Slate", keyword: "#5378a6", string: "#bcdaeb", func: "#f9bfa8", bar: "#9d7468" },
             { name: "RoyrAI Cool Deep Blue", keyword: "#3b82f6", string: "#60a5fa", func: "#93c5fd", bg: "#0e1a45", bar: "#254e9e" },
             { name: "RoyrAI Cool Harbor Lights", keyword: "#ff5a2b", string: "#5aa9ff", func: "#ffc2a8", bg: "#0d1628", bar: "#1d3a6b" },
             { name: "RoyrAI Cool Mono Teal", keyword: "#014f4f", string: "#029191", func: "#5ee0e0" },
@@ -236,7 +472,6 @@
             { name: "RoyrAI Purples Printer Ink", keyword: "#ff7edb", string: "#36f9f6", func: "#fede5d", bg: "#262335", bar: "#2a1f43" },
             { name: "RoyrAI Purples Purple Berry", keyword: "#7b2cbf", string: "#c77dff", func: "#e0aaff" },
             { name: "RoyrAI Purples Royal Purple", keyword: "#7c3aed", string: "#a855f7", func: "#c084fc", bar: "#4b268d" },
-            { name: "RoyrAI Purples Star Dust", keyword: "#cba6f7", string: "#89b4fa", func: "#f5c2e7", bar: "#536b94" },
             { name: "RoyrAI Purples Violet Haze", keyword: "#c792ea", string: "#ff7edb", func: "#36f9f6", bg: "#241b2f", bar: "#3b2a5a" },
             { name: "RoyrAI Purples Violet Prism", keyword: "#c084fc", string: "#22d3ee", func: "#f0abfc", bg: "#0b0f1a", bar: "#3b1d6e" },
           ],
@@ -247,6 +482,8 @@
           [
             { name: "RoyrAI Tech Copper Chip", keyword: "#4fd1e8", string: "#d08a52", func: "#dfe6ee", bg: "#11161b", bar: "#2a3440" },
             { name: "RoyrAI Tech Quantum Steel", keyword: "#8f9bff", string: "#5ccfe6", func: "#cfd8e3", bg: "#0f1320", bar: "#2b3350" },
+            { name: "RoyrAI Tech Signature Chip", keyword: "#0fa4a0", string: "#f7ce46", func: "#dfe6ee", bg: "#11161b", bar: "#6b7684" },
+            { name: "RoyrAI Tech Star Dust", keyword: "#cba6f7", string: "#89b4fa", func: "#f5c2e7", bar: "#536b94" },
             { name: "RoyrAI Tech Titanium Leaf", keyword: "#7aa2c8", string: "#7ee787", func: "#e5e9ee", bg: "#14171a", bar: "#30363d" },
           ],
         ],
@@ -254,10 +491,11 @@
           "Warm (Reds, Oranges & Ambers)",
           "Fire, fruit & earth",
           [
-            { name: "RoyrAI Warm Burgundy Cornflower", keyword: "#d6416f", string: "#4f8dff", func: "#f2b8c9", bg: "#1c0812", bar: "#870c3e" },
             { name: "RoyrAI Warm Burgundy Frost", keyword: "#d6416f", string: "#8fd3ff", func: "#e6f4ff", bg: "#1f0710", bar: "#870c3e" },
+            { name: "RoyrAI Warm Burgundy Night", keyword: "#d6416f", string: "#5aa9ff", func: "#b8dcff", bg: "#10102a", bar: "#6e0a33" },
             { name: "RoyrAI Warm Burgundy Persimmon", keyword: "#ff5a2b", string: "#e0557f", func: "#e6e6e6", bg: "#22060f", bar: "#870c3e" },
-            { name: "RoyrAI Warm Burgundy Sky", keyword: "#d6416f", string: "#5aa9ff", func: "#b8dcff", bg: "#160a1c", bar: "#6e0a33" },
+            { name: "RoyrAI Warm Burgundy Plum", keyword: "#d6416f", string: "#4f8dff", func: "#f2b8c9", bg: "#180c24", bar: "#870c3e" },
+            { name: "RoyrAI Warm Coral Slate", keyword: "#5378a6", string: "#bcdaeb", func: "#f9bfa8", bar: "#9d7468" },
             { name: "RoyrAI Warm Dune Fremen", keyword: "#3576ae", string: "#68aec9", func: "#e9cb8e", bg: "#15171c", bar: "#a5663a" },
             { name: "RoyrAI Warm Dune Sands", keyword: "#a5663a", string: "#e9cb8e", func: "#a9d8de", bg: "#241308", bar: "#8a4a28" },
             { name: "RoyrAI Warm Dune Spice", keyword: "#a5663a", string: "#e9cb8e", func: "#3576ae", bg: "#241308", bar: "#66280c" },
@@ -324,8 +562,11 @@
        <span class="role">${role}</span>${c}
      </div>`;
         return `
-    <div class="card">
-      <h2>${name}</h2>
+    <div class="card" data-name="${name}">
+      <div class="card-head">
+        <h2>${name}</h2>
+        <label class="pick"><input type="checkbox" data-pick="${name}" />Compare</label>
+      </div>
       <div class="swatches">
         ${swatch(barColor, "bar")}
         ${swatch(editorBg, "bg")}
@@ -372,6 +613,218 @@
         span.textContent = "copied!";
         setTimeout(() => (span.textContent = orig), 800);
       });
+
+      // ── compare ──
+      const MAX_COMPARE = 4;
+      const allThemes = groups.flatMap(([, , themes]) => themes);
+      const byName = new Map(allThemes.map((t) => [t.name, t]));
+      let picked = [];
+
+      const escapeHtml = (s) =>
+        s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+
+      // full palette, mirroring gen-themes.js
+      const palette = ({ keyword, string, func, bg, bar }) => {
+        const cols = [keyword, string, func];
+        const editorBg = bg || deriveBg(cols);
+        const fg = deriveFg(cols);
+        return {
+          bg: editorBg,
+          fg,
+          kw: keyword,
+          str: string,
+          fn: func,
+          cmt: mix(fg, editorBg, 0.5),
+          num: mix(string, func, 0.5),
+          punct: mix(fg, editorBg, 0.32),
+          type: mix(func, fg, 0.15),
+          param: mix(fg, func, 0.25),
+          prop: mix(func, fg, 0.1),
+          lineNo: mix(fg, editorBg, 0.6),
+          lineHi: mix(editorBg, fg, 0.06),
+          panel: mix(editorBg, "#000000", 0.25),
+          bar: bar || deriveBar(editorBg),
+        };
+      };
+
+      // sample code: each line is a list of [token, text]
+      const SAMPLE = [
+        [["cmt", "// Fetch a user and greet them"]],
+        [["kw", "import"], ["p", " { "], ["fg", "api"], ["p", " } "], ["kw", "from"], ["fg", " "], ["str", '"./client"'], ["p", ";"]],
+        [],
+        [["kw", "class"], ["fg", " "], ["type", "Greeter"], ["fg", " "], ["kw", "extends"], ["fg", " "], ["type", "Base"], ["p", " {"]],
+        [["fg", "  "], ["fn", "constructor"], ["p", "("], ["param", "name"], ["p", ", "], ["param", "retries"], ["p", " = "], ["num", "3"], ["p", ") {"]],
+        [["fg", "    "], ["kwi", "this"], ["p", "."], ["prop", "name"], ["p", " = "], ["fg", "name"], ["p", ";"]],
+        [["fg", "  "], ["p", "}"]],
+        [],
+        [["fg", "  "], ["kw", "async"], ["fg", " "], ["fn", "greet"], ["p", "("], ["param", "id"], ["p", ") {"]],
+        [["fg", "    "], ["kw", "const"], ["fg", " user "], ["p", "= "], ["kw", "await"], ["fg", " api"], ["p", "."], ["fn", "get"], ["p", "("], ["fg", "id"], ["p", ");"]],
+        [["fg", "    "], ["kw", "return"], ["p", " { "], ["prop", "text"], ["p", ": "], ["str", '"Hi!"'], ["p", ", "], ["prop", "n"], ["p", ": "], ["num", "42"], ["p", " };"]],
+        [["fg", "  "], ["p", "}"]],
+        [["p", "}"]],
+      ];
+      const HIGHLIGHT_ROW = 9;
+
+      const ideHTML = (theme) => {
+        const c = palette(theme);
+        const color = { cmt: c.cmt, kw: c.kw, kwi: c.kw, str: c.str, fn: c.fn, type: c.type, param: c.param, prop: c.prop, num: c.num, p: c.punct, fg: c.fg };
+        const rows = SAMPLE.map((tokens, i) => {
+          const code = tokens
+            .map(([tok, text]) => {
+              const style = `color:${color[tok]}${tok === "cmt" || tok === "kwi" ? ";font-style:italic" : ""}`;
+              return `<span style="${style}">${escapeHtml(text)}</span>`;
+            })
+            .join("");
+          const hi = i + 1 === HIGHLIGHT_ROW;
+          return `<div class="row" style="${hi ? `background:${c.lineHi}` : ""}"><span class="num" style="color:${hi ? c.fn : c.lineNo}">${i + 1}</span><span>${code || " "}</span></div>`;
+        }).join("");
+        const sideFg = mix(c.fg, c.panel, 0.25);
+        return `
+    <div class="ide">
+      <div class="ide-body">
+        <div class="ide-activity" style="background:${c.bar}"></div>
+        <div class="ide-side" style="background:${c.panel};color:${sideFg}">
+          <div style="color:${c.fg};font-weight:600">EXPLORER</div>
+          <div>client.js</div>
+          <div style="background:${c.lineHi};color:${c.fg}">greeter.js</div>
+          <div>index.js</div>
+        </div>
+        <div class="ide-main" style="background:${c.bg}">
+          <div class="ide-tabs" style="background:${c.panel}">
+            <span style="background:${c.bg};color:${c.fg};border-top-color:${c.fn}">greeter.js</span>
+            <span style="color:${mix(c.fg, c.bg, 0.5)}">client.js</span>
+          </div>
+          <div class="ide-code" style="color:${c.fg}">${rows}</div>
+        </div>
+      </div>
+      <div class="ide-status" style="background:${c.bar};color:${textOn(c.bar)}">
+        <span>&#9679; main</span><span>Ln ${HIGHLIGHT_ROW}</span><span>UTF-8</span><span>JavaScript</span>
+      </div>
+    </div>`;
+      };
+
+      const optionsHTML = (selected, exclude) =>
+        groups
+          .map(
+            ([title, , themes]) =>
+              `<optgroup label="${escapeHtml(title)}">${themes
+                .filter((t) => t.name === selected || !exclude.includes(t.name))
+                .map((t) => `<option value="${escapeHtml(t.name)}"${t.name === selected ? " selected" : ""}>${escapeHtml(t.name)}</option>`)
+                .join("")}</optgroup>`,
+          )
+          .join("");
+
+      const cmpView = document.getElementById("cmpview");
+      const cmpGrid = document.getElementById("cmpgrid");
+      const cmpAdd = document.getElementById("cmpadd");
+      const cmpOpen = document.getElementById("cmpopen");
+      const cmpClear = document.getElementById("cmpclear");
+      const cmpHint = document.getElementById("cmphint");
+
+      const syncCards = () => {
+        document.querySelectorAll("input[data-pick]").forEach((box) => {
+          const on = picked.includes(box.dataset.pick);
+          box.checked = on;
+          box.disabled = !on && picked.length >= MAX_COMPARE;
+          box.closest(".card").classList.toggle("picked", on);
+        });
+        cmpOpen.disabled = picked.length < 2;
+        cmpClear.disabled = picked.length === 0;
+        cmpOpen.textContent = picked.length ? `Compare (${picked.length})` : "Compare";
+        cmpHint.textContent =
+          picked.length >= MAX_COMPARE
+            ? `Maximum ${MAX_COMPARE} themes selected`
+            : picked.length < 2
+              ? "Tick 2–4 themes to compare"
+              : `${picked.length} themes selected`;
+      };
+
+      const renderCompare = () => {
+        cmpGrid.innerHTML = picked
+          .map(
+            (name, i) => `
+    <div class="cmpcol">
+      <div class="cmpcol-head">
+        <select data-col="${i}" aria-label="Theme in column ${i + 1}">${optionsHTML(name, picked)}</select>
+        <button class="btn" data-remove="${i}" title="Remove from comparison"${picked.length <= 1 ? " disabled" : ""}>✕</button>
+      </div>
+      ${ideHTML(byName.get(name))}
+    </div>`,
+          )
+          .join("");
+        const full = picked.length >= MAX_COMPARE;
+        cmpAdd.disabled = full;
+        cmpAdd.innerHTML =
+          `<option value="">${full ? `Maximum ${MAX_COMPARE} themes` : "+ Add a theme…"}</option>` +
+          (full ? "" : optionsHTML(null, picked));
+      };
+
+      const setHash = (open) => {
+        const hash = open ? "#compare=" + encodeURIComponent(picked.join("|")) : "";
+        history.replaceState(null, "", location.pathname + location.search + hash);
+      };
+
+      const openCompare = () => {
+        if (picked.length < 2) return;
+        renderCompare();
+        cmpView.hidden = false;
+        document.body.style.overflow = "hidden";
+        setHash(true);
+      };
+      const closeCompare = () => {
+        cmpView.hidden = true;
+        document.body.style.overflow = "";
+        setHash(false);
+        syncCards();
+      };
+      const refreshOpen = () => {
+        renderCompare();
+        setHash(true);
+      };
+
+      document.addEventListener("change", (e) => {
+        const box = e.target.closest("input[data-pick]");
+        if (box) {
+          const name = box.dataset.pick;
+          picked = box.checked ? [...picked, name].slice(0, MAX_COMPARE) : picked.filter((n) => n !== name);
+          syncCards();
+          return;
+        }
+        const col = e.target.closest("select[data-col]");
+        if (col) {
+          picked[Number(col.dataset.col)] = col.value;
+          refreshOpen();
+          return;
+        }
+        if (e.target === cmpAdd && cmpAdd.value) {
+          picked.push(cmpAdd.value);
+          refreshOpen();
+        }
+      });
+
+      cmpGrid.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-remove]");
+        if (!btn) return;
+        picked.splice(Number(btn.dataset.remove), 1);
+        refreshOpen();
+      });
+      cmpOpen.addEventListener("click", openCompare);
+      cmpClear.addEventListener("click", () => {
+        picked = [];
+        syncCards();
+      });
+      document.getElementById("cmpclose").addEventListener("click", closeCompare);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !cmpView.hidden) closeCompare();
+      });
+
+      // restore a comparison from the URL, e.g. #compare=Name%20A|Name%20B
+      const fromHash = decodeURIComponent((location.hash.match(/^#compare=(.*)$/) || [])[1] || "")
+        .split("|")
+        .filter((n) => byName.has(n));
+      picked = [...new Set(fromHash)].slice(0, MAX_COMPARE);
+      syncCards();
+      if (picked.length >= 2) openCompare();
     </script>
   </body>
 </html>
