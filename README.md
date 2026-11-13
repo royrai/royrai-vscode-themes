@@ -121,16 +121,38 @@ The theme JSON files in [themes/](themes/) are **not edited by hand** — they a
    node gen-themes.js
    ```
 
-   This regenerates all `themes/*.json` files and refreshes the theme list in `package.json` (version and description are left untouched). On success it prints e.g. `Generated 33 themes + package.json`.
+   This regenerates all `themes/*.json` files and refreshes the theme list in `package.json` (version and description are left untouched). On success it prints e.g. `Generated 65 themes + package.json`.
 
 3. **Preview / test** the themes by pressing `F5` in VS Code to launch an Extension Development Host, then switch themes with `Cmd+K Cmd+T` / `Ctrl+K Ctrl+T`.
 
 4. **Package into a `.vsix`** (only needed to distribute or install outside the dev host):
 
    ```bash
-   npm install -g @vscode/vsce   # one-time install of the packaging tool
-   vsce package                  # produces royrai-vscode-themes-<version>.vsix
+   npx @vscode/vsce package   # produces royrai-vscode-themes-<version>.vsix
    ```
+
+   `npx` runs the packaging tool without installing it. [.vscodeignore](.vscodeignore) controls which files go into the `.vsix` — only the theme files, `package.json`, README, CHANGELOG and LICENSE are packaged.
+
+## Project Structure
+
+```
+royrai-vscode-themes/
+├── themes/            # generated theme JSON files, one per theme
+├── docs/              # HTML preview of all palettes
+├── themes-data.js     # palette data (source)
+├── gen-themes.js      # generator: palette data → themes/*.json + package.json
+├── package.json       # extension manifest
+├── .vscodeignore      # files excluded from the .vsix
+├── CHANGELOG.md
+└── README.md
+```
+
+## Key Files
+
+- [themes-data.js](themes-data.js) — the only file to edit when adding or changing a theme.
+- [gen-themes.js](gen-themes.js) — run it after every change to `themes-data.js`.
+- [docs/color-palettes-dark-grouped.html](docs/color-palettes-dark-grouped.html) — open in a browser to preview every palette. It holds its own copy of the palette data, so update it together with `themes-data.js`.
+- [CHANGELOG.md](CHANGELOG.md) — add an entry for every new version.
 
 ## License
 
